@@ -8,8 +8,9 @@
     "format": "prettier --write .",
     "start:dev": "nodemon src/server.ts",
     "start:prod": "npm run build && node dist/server.js",
-    "build": "tsc"
-
+    "build": "tsc",
+    "docker:build": "docker build -t Alvadorn-backend -f docker/Dockerfile .",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "express": "^4.19.2",
+    "husky": "^9.0.11",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
     "zod": "^3.23.8"
