@@ -5,5 +5,5 @@ export interface IActivityRepository {
   findById(id: string): Promise<Activity | null>;
   findMany(user_id: string): Promise<Activity[] | null>;
   delete(id: string): Promise<void>;
-  update(id: string): Promise<Activity | null>;
+  update(id: string, data: Activity): Promise<Activity | null>;
 }
