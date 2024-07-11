@@ -14,7 +14,7 @@ type UpdateActivityRequest = {
 type UpdateActivityResponse = {
   activity: UpdateActivityRequest;
 };
-export class CreateActivityService
+export class UpdateActivityService
   implements Service<UpdateActivityRequest, UpdateActivityResponse>
 {
   constructor(private readonly activityRepository: ActivityRepositoryImpl) {}

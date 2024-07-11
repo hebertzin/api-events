@@ -22,7 +22,7 @@ export class GetActivityService
     } catch (error) {
       throw new AppError(
         "Erro interno do servidor",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }
