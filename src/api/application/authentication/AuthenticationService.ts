@@ -20,7 +20,7 @@ export class AuthenticationService
   constructor(
     private readonly usersRepository: UsersRepositoryImpl,
     private readonly jwtService: JwtServiceImpl,
-    private readonly bcrypt: BcryptHashService
+    private readonly bcrypt: BcryptHashService,
   ) {}
   async invoke({ email, password }: LoginRequest): Promise<LoginResponse> {
     const existentUser = await this.usersRepository.findByEmail(email);
@@ -31,7 +31,7 @@ export class AuthenticationService
 
     const isValidPassword = await this.bcrypt.compare(
       password,
-      existentUser.password
+      existentUser.password,
     );
 
     if (!isValidPassword) {
@@ -44,7 +44,7 @@ export class AuthenticationService
     } catch (error) {
       throw new AppError(
         "Erro interno do servidor",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }
