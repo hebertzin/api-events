@@ -8,6 +8,9 @@
     "format": "prettier --write .",
     "start:dev": "nodemon src/server.ts",
     "start:prod": "npm run build && node dist/server.js",
+    "db:migrate": "prisma migrate dev",
+    "db:all": "npm run db:migrate & npm run db:seed",
+    "db:down": "npx prisma migrate reset --force",
     "build": "tsc",
     "docker:build": "docker build -t alvadorn -f docker/Dockerfile .",
     "prepare": "husky"
