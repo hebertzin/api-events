@@ -1,7 +1,8 @@
 import { Service } from "../../domain/Service";
-import { UserAlreadyExist } from "../../errors/errors";
+import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashService";
 import { UsersRepositoryImpl } from "../../infraestructure/db/repository/users/UsersRepositoryImpl";
+import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
 type CreateUserRequest = {
   email: string;
@@ -18,7 +19,7 @@ export class CreateUserService
 {
   constructor(
     private readonly usersRepository: UsersRepositoryImpl,
-    private readonly bcrypt: BcryptHashService,
+    private readonly bcrypt: BcryptHashService
   ) {}
 
   async invoke({
@@ -29,7 +30,7 @@ export class CreateUserService
     const existentUser = await this.usersRepository.findByEmail(email);
 
     if (existentUser) {
-      throw new UserAlreadyExist("Usuário já existe", 209);
+      throw new UserAlreadyExist("Usuário já existe", HttpStatusCode.Created);
     }
 
     try {
@@ -42,7 +43,10 @@ export class CreateUserService
       });
       return { user };
     } catch (error) {
-      throw new Error("Erro interno do servidor");
+      throw new AppError(
+        "Erro interno do servidor",
+        HttpStatusCode.InternalServerError
+      );
     }
   }
 }
