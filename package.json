@@ -9,7 +9,7 @@
     "start:dev": "nodemon src/server.ts",
     "start:prod": "npm run build && node dist/server.js",
     "build": "tsc",
-    "docker:build": "docker build -t Alvadorn-backend -f docker/Dockerfile .",
+    "docker:build": "docker build -t alvadorn -f docker/Dockerfile .",
     "prepare": "husky"
   },
   "keywords": [],
