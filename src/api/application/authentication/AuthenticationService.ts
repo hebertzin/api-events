@@ -1,5 +1,5 @@
 import { Service } from "../../domain/Service";
-import { AppError, NotFound } from "../../errors/errors";
+import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashServiceImpl";
 import { UsersRepositoryImpl } from "../../infraestructure/db/repository/users/UsersRepositoryImpl";
 import { JwtServiceImpl } from "../../infraestructure/jwt/JwtServiceImpl";
@@ -20,7 +20,7 @@ export class AuthenticationService
   constructor(
     private readonly usersRepository: UsersRepositoryImpl,
     private readonly jwtService: JwtServiceImpl,
-    private readonly bcrypt: BcryptHashService,
+    private readonly bcrypt: BcryptHashService
   ) {}
   async invoke({ email, password }: LoginRequest): Promise<LoginResponse> {
     const existentUser = await this.usersRepository.findByEmail(email);
@@ -31,11 +31,14 @@ export class AuthenticationService
 
     const isValidPassword = await this.bcrypt.compare(
       password,
-      existentUser.password,
+      existentUser.password
     );
 
     if (!isValidPassword) {
-      throw new Error("Credencias inválidas");
+      throw new InvalidCredentials(
+        "Credencias inválidas",
+        HttpStatusCode.Unauthorized
+      );
     }
 
     try {
@@ -44,7 +47,7 @@ export class AuthenticationService
     } catch (error) {
       throw new AppError(
         "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }

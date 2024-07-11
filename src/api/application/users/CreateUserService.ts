@@ -19,7 +19,7 @@ export class CreateUserService
 {
   constructor(
     private readonly usersRepository: UsersRepositoryImpl,
-    private readonly bcrypt: BcryptHashService,
+    private readonly bcrypt: BcryptHashService
   ) {}
 
   async invoke({
@@ -45,7 +45,7 @@ export class CreateUserService
     } catch (error) {
       throw new AppError(
         "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }
