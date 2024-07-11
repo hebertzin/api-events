@@ -1,6 +1,6 @@
 import { Service } from "../../domain/Service";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
-import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashService";
+import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashServiceImpl";
 import { UsersRepositoryImpl } from "../../infraestructure/db/repository/users/UsersRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
