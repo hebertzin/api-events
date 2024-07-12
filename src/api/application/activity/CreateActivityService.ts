@@ -1,30 +1,36 @@
-import { Service } from "../../domain/Service";
+import { IActivityRepository } from "../../domain/activity/ActivityRepository";
+import { ILogger } from "../../domain/Logger";
 import { AppError } from "../../errors/errors";
-import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
-type CreateActivityRequest = {
+type Activity = {
   name: string;
   description: string;
   location: string;
   userID: string;
 };
 
-type CreateActivityResponse = {
-  activity: CreateActivityRequest;
-};
-export class CreateActivityService
-  implements Service<CreateActivityRequest, CreateActivityResponse>
-{
-  constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke(data: CreateActivityRequest): Promise<CreateActivityResponse> {
+export interface ICreateActivityService {
+  invoke(activity: Activity): Promise<Activity>;
+}
+
+export class CreateActivityService implements ICreateActivityService {
+  constructor(
+    readonly activityRepository: IActivityRepository,
+    readonly logger: ILogger
+  ) {}
+  async invoke(data: Activity): Promise<Activity> {
     try {
       const activity = await this.activityRepository.create(data);
-      return { activity };
+      this.logger.info("New activity was created sucessfully");
+      return activity;
     } catch (error) {
+      this.logger.error(
+        `Some error has been ocurred trying create a new activity ${error}`
+      );
       throw new AppError(
-        "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        "Internal server error",
+        HttpStatusCode.InternalServerError
       );
     }
   }

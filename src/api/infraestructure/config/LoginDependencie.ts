@@ -14,4 +14,4 @@ const loginService = new AuthenticationService(
   loggerService
 );
 
-const authController = new LoginController(loginService);
+export const authController = new LoginController(loginService);

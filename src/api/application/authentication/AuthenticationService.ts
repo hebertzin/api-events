@@ -35,7 +35,7 @@ export class AuthenticationService implements LoginService {
     }
 
     try {
-      const token = this.jwtService.sign(existentUser);
+      const token = this.jwtService.sign(existentUser, { expiresIn: "1d" });
       return { token };
     } catch (error) {
       this.logger.error(

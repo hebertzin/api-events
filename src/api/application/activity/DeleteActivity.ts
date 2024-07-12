@@ -1,19 +1,28 @@
+import { IActivityRepository } from "../../domain/activity/ActivityRepository";
+import { ILogger } from "../../domain/Logger";
 import { Service } from "../../domain/Service";
 import { AppError } from "../../errors/errors";
-import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
 type DeleteActivityParam = {
   id: string;
 };
 
-type DeleteActivityResponse = void;
-export class DeleteActivityService implements Service<DeleteActivityParam> {
-  constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke({ id }: DeleteActivityParam): Promise<DeleteActivityResponse> {
+export interface IDeleteActivity {
+  invoke({ id }: DeleteActivityParam): Promise<void>;
+}
+export class DeleteActivityService implements IDeleteActivity {
+  constructor(
+    readonly activityRepository: IActivityRepository,
+    readonly logger: ILogger,
+  ) {}
+  async invoke({ id }: DeleteActivityParam): Promise<void> {
     try {
       await this.activityRepository.delete(id);
     } catch (error) {
+      this.logger.error(
+        `Some error has been ocurred trying delete a new activity ${error}`,
+      );
       throw new AppError(
         "Internal server error",
         HttpStatusCode.InternalServerError,
