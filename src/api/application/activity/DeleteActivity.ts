@@ -16,7 +16,7 @@ export class DeleteActivityService implements Service<DeleteActivityParam> {
     } catch (error) {
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

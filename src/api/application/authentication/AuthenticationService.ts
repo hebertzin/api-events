@@ -36,7 +36,7 @@ export class AuthenticationService
 
     if (!isValidPassword) {
       throw new InvalidCredentials(
-        "Credencias inválidas",
+        "Invalid credentials",
         HttpStatusCode.Unauthorized
       );
     }
@@ -46,7 +46,7 @@ export class AuthenticationService
       return { token };
     } catch (error) {
       throw new AppError(
-        "Erro interno do servidor",
+        "Internal server error",
         HttpStatusCode.InternalServerError
       );
     }

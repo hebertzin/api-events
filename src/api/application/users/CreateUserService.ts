@@ -13,7 +13,7 @@ export type User = {
 export class CreateUserService implements ICreateUserService {
   constructor(
     readonly usersRepository: IUsersRepository,
-    readonly bcrypt: HashService,
+    readonly bcrypt: HashService
   ) {}
 
   async invoke({ name, email, password }: User): Promise<User> {
@@ -35,7 +35,7 @@ export class CreateUserService implements ICreateUserService {
     } catch (error) {
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }

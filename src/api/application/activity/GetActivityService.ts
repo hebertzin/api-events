@@ -16,7 +16,7 @@ export class GetActivityService implements Service<GetActivityParam> {
     } catch (error) {
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

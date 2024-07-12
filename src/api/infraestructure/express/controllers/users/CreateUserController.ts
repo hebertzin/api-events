@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 import { HttpStatusCode } from "../../../utils/HttpStatusCode";
 import { z } from "zod";
 import { ICreateUserService } from "../../../../domain/CreateUserService";
@@ -14,7 +14,7 @@ export class CreateUserController implements Controller<Request> {
   constructor(readonly usersService: ICreateUserService) {}
 
   async handle(req: Request): Promise<HttpResponse> {
-    const { email, password, name } = zodValidationUserSchema.parse(req.body);
+    const { email, password, name } = req.body;
     try {
       await this.usersService.invoke({
         email: email,
@@ -25,6 +25,7 @@ export class CreateUserController implements Controller<Request> {
       return {
         statusCode: HttpStatusCode.Ok,
         msg: "User created successfully",
+        body: { email, name },
       };
     } catch (error) {
       return { msg: error.message, statusCode: error.code };

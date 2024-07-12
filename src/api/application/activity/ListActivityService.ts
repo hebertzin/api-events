@@ -17,7 +17,7 @@ export class ListActivityService {
     } catch (error) {
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }
