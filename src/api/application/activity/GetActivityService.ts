@@ -1,22 +1,32 @@
 import { Activity } from "@prisma/client";
-import { Service } from "../../domain/Service";
 import { AppError } from "../../errors/errors";
-import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
+import { IActivityRepository } from "../../domain/activity/ActivityRepository";
+import { ILogger } from "../../domain/Logger";
 
 type GetActivityParam = {
   id: string;
 };
 
-export class GetActivityService implements Service<GetActivityParam> {
-  constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke({ id }: GetActivityParam): Promise<GetActivityParam> {
+export interface IGetActivity {
+  invoke({ id }: GetActivityParam): Promise<Activity>;
+}
+
+export class GetActivityService implements IGetActivity {
+  constructor(
+    readonly activityRepository: IActivityRepository,
+    readonly logger: ILogger
+  ) {}
+  async invoke({ id }: GetActivityParam): Promise<Activity> {
     try {
       return await this.activityRepository.findById(id);
     } catch (error) {
+      this.logger.error(
+        `Some error has been ocurred trying retrieve an activity ${error}`
+      );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }

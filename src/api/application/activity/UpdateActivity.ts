@@ -1,31 +1,29 @@
-import { Service } from "../../domain/Service";
+import { Activity } from "@prisma/client";
 import { AppError } from "../../errors/errors";
-import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
+import { IActivityRepository } from "../../domain/activity/ActivityRepository";
+import { ILogger } from "../../domain/Logger";
 
-type UpdateActivityRequest = {
-  id: string;
-  name: string;
-  description: string;
-  location: string;
-  userID: string;
-};
+export interface IUpdateActivity {
+  invoke(id: string, data: Activity): Promise<Activity>;
+}
 
-type UpdateActivityResponse = {
-  activity: UpdateActivityRequest;
-};
-export class UpdateActivityService
-  implements Service<UpdateActivityRequest, UpdateActivityResponse>
-{
-  constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke(data: UpdateActivityRequest): Promise<UpdateActivityResponse> {
+export class UpdateActivityService implements IUpdateActivity {
+  constructor(
+    readonly activityRepository: IActivityRepository,
+    readonly logger: ILogger
+  ) {}
+  async invoke(id: string, data: Activity): Promise<Activity> {
     try {
-      const activity = await this.activityRepository.update(data.id, data);
-      return { activity };
+      const activity = await this.activityRepository.update(id, data);
+      return activity;
     } catch (error) {
+      this.logger.error(
+        `Some error has been ocurred trying update an activity ${error}`
+      );
       throw new AppError(
-        "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        "Internal server error",
+        HttpStatusCode.InternalServerError
       );
     }
   }
