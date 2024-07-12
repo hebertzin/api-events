@@ -1,3 +1,3 @@
-export interface Service<T, R> {
-  invoke(data: T): Promise<R>;
+export interface Service<T> {
+  invoke(data: T): Promise<T | void>;
 }

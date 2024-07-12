@@ -6,7 +6,7 @@ const activitRepository = new ActivityRepositoryImpl();
 const createActivityService = new CreateActivityService(activitRepository);
 
 const createActivityController = new CreateActivityController(
-  createActivityService
+  createActivityService,
 );
 
 export { createActivityController };

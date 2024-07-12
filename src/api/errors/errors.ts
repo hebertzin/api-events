@@ -27,3 +27,13 @@ export class NotFound extends Error {
     this.name = "NotFound";
   }
 }
+
+export class InvalidCredentials extends Error {
+  code: number;
+  constructor(message: string, code: number) {
+    super();
+    this.message = message;
+    this.code = code;
+    this.name = "InvalidCredentials";
+  }
+}
