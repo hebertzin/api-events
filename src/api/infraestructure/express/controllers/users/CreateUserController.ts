@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { CreateUserService } from "../../../../application/users/CreateUserService";
 import { HttpStatusCode } from "../../../utils/HttpStatusCode";
 import { z } from "zod";
 import { ICreateUserService } from "../../../../domain/CreateUserService";
+import { Controller, HttpResponse } from "../../../../domain/Controller";
 
 export const zodValidationUserSchema = z.object({
   email: z.string().email(),
@@ -10,10 +10,10 @@ export const zodValidationUserSchema = z.object({
   password: z.string(),
 });
 
-export class CreateUserController {
+export class CreateUserController implements Controller<Request> {
   constructor(readonly usersService: ICreateUserService) {}
 
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: Request): Promise<HttpResponse> {
     const { email, password, name } = zodValidationUserSchema.parse(req.body);
     try {
       await this.usersService.invoke({
@@ -21,11 +21,13 @@ export class CreateUserController {
         name: name,
         password: password,
       });
-      return res
-        .status(HttpStatusCode.Created)
-        .json({ msg: "User created successfully" });
+
+      return {
+        statusCode: HttpStatusCode.Ok,
+        msg: "User created successfully",
+      };
     } catch (error) {
-      return res.status(error.code).json({ msg: error.message });
+      return { msg: error.message, statusCode: error.code };
     }
   }
 }
