@@ -1,28 +1,19 @@
-import { Service } from "../../domain/Service";
-import { AppError, NotFound } from "../../errors/errors";
-import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashServiceImpl";
-import { UsersRepositoryImpl } from "../../infraestructure/db/repository/users/UsersRepositoryImpl";
-import { JwtServiceImpl } from "../../infraestructure/jwt/JwtServiceImpl";
+import { HashService } from "../../domain/HashService";
+import { JwtService } from "../../domain/JwtService";
+import { ILogger } from "../../domain/Logger";
+import { Login, LoginService, Token } from "../../domain/LoginService";
+import { IUsersRepository } from "../../domain/users/UsersRepository";
+import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
-type LoginRequest = {
-  email: string;
-  password: string;
-};
-
-type LoginResponse = {
-  token: string;
-};
-
-export class AuthenticationService
-  implements Service<LoginRequest, LoginResponse>
-{
+export class AuthenticationService implements LoginService {
   constructor(
-    private readonly usersRepository: UsersRepositoryImpl,
-    private readonly jwtService: JwtServiceImpl,
-    private readonly bcrypt: BcryptHashService,
+    readonly usersRepository: IUsersRepository,
+    readonly jwtService: JwtService,
+    readonly bcrypt: HashService,
+    readonly logger: ILogger
   ) {}
-  async invoke({ email, password }: LoginRequest): Promise<LoginResponse> {
+  async invoke({ email, password }: Login): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(email);
 
     if (!existentUser) {
@@ -31,20 +22,27 @@ export class AuthenticationService
 
     const isValidPassword = await this.bcrypt.compare(
       password,
-      existentUser.password,
+      existentUser.password
     );
 
     if (!isValidPassword) {
-      throw new Error("Credencias inválidas");
+      this.logger.warn(`User credential are invalid ${email}`);
+      throw new InvalidCredentials(
+        "Invalid credentials",
+        HttpStatusCode.Unauthorized
+      );
     }
 
     try {
       const token = this.jwtService.sign(existentUser);
       return { token };
     } catch (error) {
+      this.logger.error(
+        `Some internal server error has been ocurred trying log user : ${error}`
+      );
       throw new AppError(
-        "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        "Internal server error",
+        HttpStatusCode.InternalServerError
       );
     }
   }

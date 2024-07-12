@@ -1,19 +1,34 @@
-import { Request, Response } from "express";
-import { CreateUserService } from "../../../../application/users/CreateUserService";
+import { Request } from "express";
+import { HttpStatusCode } from "../../../utils/HttpStatusCode";
+import { z } from "zod";
+import { ICreateUserService } from "../../../../domain/CreateUserService";
+import { Controller, HttpResponse } from "../../../../domain/Controller";
 
-export class CreateUserController {
-  constructor(private usersService: CreateUserService) {}
+export const zodValidationUserSchema = z.object({
+  email: z.string().email(),
+  name: z.string(),
+  password: z.string(),
+});
 
-  async handle(req: Request, res: Response): Promise<Response> {
+export class CreateUserController implements Controller<Request> {
+  constructor(readonly usersService: ICreateUserService) {}
+
+  async handle(req: Request): Promise<HttpResponse> {
+    const { email, password, name } = req.body;
     try {
       await this.usersService.invoke({
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
+        email: email,
+        name: name,
+        password: password,
       });
-      return res.status(201).json({ msg: "User created" });
+
+      return {
+        statusCode: HttpStatusCode.Ok,
+        msg: "User created successfully",
+        body: { email, name },
+      };
     } catch (error) {
-      return res.status(500).json({ msg: "Internal server error" });
+      return { msg: error.message, statusCode: error.code };
     }
   }
 }

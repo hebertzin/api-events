@@ -3,21 +3,19 @@ import { AppError } from "../../errors/errors";
 import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
-type DeleteActivityRequest = {
+type DeleteActivityParam = {
   id: string;
 };
 
 type DeleteActivityResponse = void;
-export class DeleteActivityService
-  implements Service<DeleteActivityRequest, DeleteActivityResponse>
-{
+export class DeleteActivityService implements Service<DeleteActivityParam> {
   constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke({ id }: DeleteActivityRequest): Promise<DeleteActivityResponse> {
+  async invoke({ id }: DeleteActivityParam): Promise<DeleteActivityResponse> {
     try {
       await this.activityRepository.delete(id);
     } catch (error) {
       throw new AppError(
-        "Erro interno do servidor",
+        "Internal server error",
         HttpStatusCode.InternalServerError,
       );
     }

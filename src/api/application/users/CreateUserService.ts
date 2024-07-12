@@ -1,36 +1,29 @@
-import { Service } from "../../domain/Service";
+import { ICreateUserService } from "../../domain/CreateUserService";
+import { HashService } from "../../domain/HashService";
+import { ILogger } from "../../domain/Logger";
+import { IUsersRepository } from "../../domain/users/UsersRepository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
-import { BcryptHashService } from "../../infraestructure/bcrypt/BcryptHashServiceImpl";
-import { UsersRepositoryImpl } from "../../infraestructure/db/repository/users/UsersRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
-type CreateUserRequest = {
+export type User = {
   email: string;
   name: string;
   password: string;
 };
 
-type CreateUserResponse = {
-  user: CreateUserRequest;
-};
-
-export class CreateUserService
-  implements Service<CreateUserRequest, CreateUserResponse>
-{
+export class CreateUserService implements ICreateUserService {
   constructor(
-    private readonly usersRepository: UsersRepositoryImpl,
-    private readonly bcrypt: BcryptHashService,
+    readonly usersRepository: IUsersRepository,
+    readonly bcrypt: HashService,
+    readonly logger: ILogger
   ) {}
 
-  async invoke({
-    name,
-    email,
-    password,
-  }: CreateUserRequest): Promise<CreateUserResponse> {
+  async invoke({ name, email, password }: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(email);
 
     if (existentUser) {
-      throw new UserAlreadyExist("Usuário já existe", HttpStatusCode.Created);
+      this.logger.warn(`User ${existentUser.email} already exist in database`);
+      throw new UserAlreadyExist("User already exist", HttpStatusCode.Conflict);
     }
 
     try {
@@ -41,11 +34,14 @@ export class CreateUserService
         name,
         password: passwordHashed,
       });
-      return { user };
+      return user;
     } catch (error) {
+      this.logger.error(
+        `Some Internal server error has been ocurred trying create a new user : ${error}`
+      );
       throw new AppError(
-        "Erro interno do servidor",
-        HttpStatusCode.InternalServerError,
+        "Internal server error",
+        HttpStatusCode.InternalServerError
       );
     }
   }

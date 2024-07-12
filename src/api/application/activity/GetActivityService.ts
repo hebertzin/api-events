@@ -4,24 +4,18 @@ import { AppError } from "../../errors/errors";
 import { ActivityRepositoryImpl } from "../../infraestructure/db/repository/activity/ActivitRepositoryImpl";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 
-type GetActivityRequest = {
+type GetActivityParam = {
   id: string;
 };
 
-type GetActivityResponse = {
-  activity: GetActivityRequest;
-};
-export class GetActivityService
-  implements Service<GetActivityRequest, GetActivityResponse>
-{
+export class GetActivityService implements Service<GetActivityParam> {
   constructor(private readonly activityRepository: ActivityRepositoryImpl) {}
-  async invoke({ id }: GetActivityRequest): Promise<GetActivityResponse> {
+  async invoke({ id }: GetActivityParam): Promise<GetActivityParam> {
     try {
-      const activity = await this.activityRepository.findById(id);
-      return { activity };
+      return await this.activityRepository.findById(id);
     } catch (error) {
       throw new AppError(
-        "Erro interno do servidor",
+        "Internal server error",
         HttpStatusCode.InternalServerError,
       );
     }
