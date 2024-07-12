@@ -17,7 +17,8 @@ export class AuthenticationService implements LoginService {
     const existentUser = await this.usersRepository.findByEmail(email);
 
     if (!existentUser) {
-      throw new NotFound("Usuário não encontrado", HttpStatusCode.NotFound);
+      this.logger.warn(`User not found in database system ${email}`);
+      throw new NotFound("User not found", HttpStatusCode.NotFound);
     }
 
     const isValidPassword = await this.bcrypt.compare(
