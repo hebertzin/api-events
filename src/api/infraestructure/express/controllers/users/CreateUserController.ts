@@ -23,7 +23,7 @@ export class CreateUserController implements Controller<Request> {
       });
 
       return {
-        statusCode: HttpStatusCode.Ok,
+        statusCode: HttpStatusCode.Created,
         msg: "User created successfully",
         body: { email, name },
       };
