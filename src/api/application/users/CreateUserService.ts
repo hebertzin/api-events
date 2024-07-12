@@ -15,7 +15,7 @@ export class CreateUserService implements ICreateUserService {
   constructor(
     readonly usersRepository: IUsersRepository,
     readonly bcrypt: HashService,
-    readonly logger: ILogger
+    readonly logger: ILogger,
   ) {}
 
   async invoke({ name, email, password }: User): Promise<User> {
@@ -37,11 +37,11 @@ export class CreateUserService implements ICreateUserService {
       return user;
     } catch (error) {
       this.logger.error(
-        `Some Internal server error has been ocurred trying create a new user : ${error}`
+        `Some Internal server error has been ocurred trying create a new user : ${error}`,
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }
