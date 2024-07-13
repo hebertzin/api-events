@@ -2,8 +2,6 @@ import express, { Express } from "express";
 import { loggerService } from "./api/infraestructure/logger/LoggerService";
 import { AppRoutes } from "./api/infraestructure/express/routes/routes";
 
-export const app = express();
-
 export class ExpressApp {
   private expressApp: Express;
 
