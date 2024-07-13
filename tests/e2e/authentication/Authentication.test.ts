@@ -3,7 +3,7 @@ import { ExpressApp as app } from "../../../src/app";
 describe("Authentication", () => {
   it("Should return a error if user not exist", async () => {
     const user = {
-      email: "hebert@teste.com",
+      email: "hebertnotexist@teste.com",
       password: "20304050",
     };
     const response = await request(new app().getApp())
