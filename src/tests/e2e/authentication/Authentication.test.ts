@@ -1,5 +1,6 @@
 import request from "supertest";
 import { ExpressApp as app } from "../../../app";
+
 describe("Authentication", () => {
   it("Should return a error if user not exist", async () => {
     const user = {
