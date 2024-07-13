@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../utils/HttpStatusCode";
 import { z } from "zod";
-import { ICreateActivityService } from "../../../../application/activity/CreateActivityService";
+import { IUpdateActivity } from "../../../../application/activity/UpdateActivity";
 import { Controller, HttpResponse } from "../../../../domain/Controller";
 
 export const zodValidationActivitySchema = z.object({
@@ -11,22 +11,23 @@ export const zodValidationActivitySchema = z.object({
   location: z.string(),
 });
 
-export class CreateActivityController implements Controller<Request> {
-  constructor(readonly activityService: ICreateActivityService) {}
+export class UpdateActivityController implements Controller<Request> {
+  constructor(readonly activityService: IUpdateActivity) {}
 
   async handle(req: Request): Promise<HttpResponse> {
+    const { id } = req.params;
     const { description, location, name, userID } =
       zodValidationActivitySchema.parse(req.body);
     try {
-      await this.activityService.invoke({
+      await this.activityService.invoke(id, {
         description,
         location,
-        name,
         userID,
+        name,
       });
       return {
-        msg: "Activity Created sucessfully",
-        statusCode: HttpStatusCode.Created,
+        msg: "Activity updated sucessfully",
+        statusCode: HttpStatusCode.Ok,
       };
     } catch (error) {
       return { msg: error.message, statusCode: error.code };

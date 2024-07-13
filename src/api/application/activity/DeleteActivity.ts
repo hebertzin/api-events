@@ -1,6 +1,5 @@
 import { IActivityRepository } from "../../domain/activity/ActivityRepository";
 import { ILogger } from "../../domain/Logger";
-import { Service } from "../../domain/Service";
 import { AppError } from "../../errors/errors";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 

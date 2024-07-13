@@ -5,7 +5,10 @@ import { IActivityRepository } from "../../domain/activity/ActivityRepository";
 import { ILogger } from "../../domain/Logger";
 
 export interface IUpdateActivity {
-  invoke(id: string, data: Activity): Promise<Activity>;
+  invoke(
+    id: string,
+    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
+  ): Promise<Activity>;
 }
 
 export class UpdateActivityService implements IUpdateActivity {
