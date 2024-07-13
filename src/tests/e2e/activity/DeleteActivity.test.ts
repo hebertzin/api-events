@@ -15,7 +15,7 @@ describe("Delete activity", () => {
     });
 
     const response = await request(new app().getApp()).delete(
-      "/api/v1/activity/5a1eab11-19f5-4c00-918a-cb5358a68beb"
+      "/api/v1/activity/5a1eab11-19f5-4c00-918a-cb5358a68beb",
     );
     expect(response.status).toBe(200);
     expect(response.body.message).toBe("Activity deleted sucessfully");

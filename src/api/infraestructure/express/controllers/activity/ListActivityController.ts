@@ -18,10 +18,11 @@ export class ListActivityController implements Controller<Request> {
     const { user_id } = req.params;
 
     try {
-      await this.listActivity.invoke({ user_id });
+      const activities = await this.listActivity.invoke({ user_id });
       return {
         msg: "Get a list of activities sucessfully",
         statusCode: HttpStatusCode.Ok,
+        body: activities,
       };
     } catch (error) {
       return { msg: error.message, statusCode: error.code };
