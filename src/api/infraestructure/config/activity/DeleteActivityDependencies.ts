@@ -1,0 +1,15 @@
+import { ActivityRepositoryImpl } from "../../db/repository/activity/ActivitRepositoryImpl";
+import { loggerService } from "../../logger/LoggerService";
+import { DeleteActivityService } from "../../../application/activity/DeleteActivity";
+import { DeleteActivityController } from "../../express/controllers/activity/DeleteActivityController";
+
+const activityRepository = new ActivityRepositoryImpl();
+
+const deleteActivityService = new DeleteActivityService(
+  activityRepository,
+  loggerService
+);
+
+const deleteActivity = new DeleteActivityController(deleteActivityService);
+
+export { deleteActivity };
