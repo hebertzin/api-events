@@ -10,6 +10,8 @@ const deleteActivityService = new DeleteActivityService(
   loggerService
 );
 
-const deleteActivity = new DeleteActivityController(deleteActivityService);
+const deleteActivityController = new DeleteActivityController(
+  deleteActivityService
+);
 
-export { deleteActivity };
+export { deleteActivityController };

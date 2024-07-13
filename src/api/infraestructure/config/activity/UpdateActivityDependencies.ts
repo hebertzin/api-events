@@ -9,6 +9,8 @@ const updateActivityService = new UpdateActivityService(
   activityRepository,
   loggerService
 );
-const updateActivity = new UpdateActivityController(updateActivityService);
+const updateActivityController = new UpdateActivityController(
+  updateActivityService
+);
 
-export { updateActivity };
+export { updateActivityController };

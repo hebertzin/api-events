@@ -10,6 +10,6 @@ const getActivityService = new GetActivityService(
   loggerService
 );
 
-const getActivity = new GetActivityController(getActivityService);
+const getActivityController = new GetActivityController(getActivityService);
 
-export { getActivity };
+export { getActivityController };

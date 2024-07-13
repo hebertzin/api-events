@@ -10,6 +10,6 @@ const listActivityService = new ListActivityService(
   loggerService
 );
 
-const listActivity = new ListActivityController(listActivityService);
+const listActivityController = new ListActivityController(listActivityService);
 
-export { listActivity };
+export { listActivityController };
