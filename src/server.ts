@@ -2,4 +2,4 @@ import { ExpressApp } from "./app";
 
 const app = new ExpressApp();
 
-app.start(4000);
+app.start(process.env.PORT);

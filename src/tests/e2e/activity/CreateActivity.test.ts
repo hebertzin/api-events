@@ -1,6 +1,6 @@
 import request from "supertest";
-import { ExpressApp as app } from "../../../src/app";
-import { prisma } from "../../../src/api/infraestructure/db/client/PrismaClient";
+import { ExpressApp as app } from "../../../app";
+import { prisma } from "../../../api/infraestructure/db/client/PrismaClient";
 
 describe("Create activity", () => {
   it("Should create a new actvity", async () => {
