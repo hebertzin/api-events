@@ -19,7 +19,7 @@ export class ExpressApp {
     this.expressApp.use("/api/v1", AppRoutes);
   }
 
-  public start(port: number) {
+  public start(port: number | string) {
     return this.expressApp.listen(port, () => {
       loggerService.info(`Sever is running on por ${port}!`);
     });

@@ -1,5 +1,5 @@
 import request from "supertest";
-import { ExpressApp as app } from "../../../src/app";
+import { ExpressApp as app } from "../../../app";
 
 describe("Get activity", () => {
   it("Should get an actvity", async () => {
