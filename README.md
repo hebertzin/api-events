@@ -19,7 +19,7 @@ This is a technical test project for a junior developer position where I learned
 - **Postgres**
 - **Jest**
 - **Supertest**
-- **Render***
+- **Render\***
 - **Railway**
 
 ## **Features**
@@ -66,5 +66,5 @@ This is a technical test project for a junior developer position where I learned
   In this pipeline I implemented code lint to maintain the quality and organization of the code
 
 - **Build**
-  
+
   In this pipeline the code is transpiled to JavaScript and the project image is created
