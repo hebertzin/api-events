@@ -11,5 +11,5 @@ AppRoutes.use("/authentication/user", authRoutes);
 AppRoutes.use(
   "/activity",
   authMiddleware.isAuthorized.bind(authMiddleware),
-  activiyRoutes
+  activiyRoutes,
 );
