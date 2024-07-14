@@ -16,9 +16,11 @@ This is a technical test project for a junior developer position where I learned
 - **Prettier**
 - **Eslint**
 - **Zod**
+- **Postgres**
 - **Jest**
 - **Supertest**
 - **Render***
+- **Railway**
 
 ## **Features**
 
