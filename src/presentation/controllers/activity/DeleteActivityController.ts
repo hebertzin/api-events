@@ -13,10 +13,8 @@ export const zodValidationActivitySchema = z.object({
 
 export class DeleteActivityController implements Controller<Request> {
   constructor(readonly deleteActivity: IDeleteActivity) {}
-
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
-
     try {
       await this.deleteActivity.invoke({ id });
       return {

@@ -13,10 +13,8 @@ export const zodValidationActivitySchema = z.object({
 
 export class ListActivityController implements Controller<Request> {
   constructor(readonly listActivity: IListActivity) {}
-
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
-
     try {
       const activities = await this.listActivity.invoke({ user_id });
       return {

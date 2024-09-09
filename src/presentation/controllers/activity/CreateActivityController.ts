@@ -3,7 +3,7 @@ import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
 import { ICreateActivityService } from "../../../application/activity/CreateActivityService";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-
+import { Activity } from "../../../domain/Activity";
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
   description: z.string(),
@@ -13,17 +13,10 @@ export const zodValidationActivitySchema = z.object({
 
 export class CreateActivityController implements Controller<Request> {
   constructor(readonly activityService: ICreateActivityService) {}
-
   async handle(req: Request): Promise<HttpResponse> {
-    const { description, location, name, userID } =
-      zodValidationActivitySchema.parse(req.body);
     try {
-      await this.activityService.invoke({
-        description,
-        location,
-        name,
-        userID,
-      });
+      const data = req.body as Activity;
+      await this.activityService.invoke(data);
       return {
         msg: "Activity Created sucessfully",
         statusCode: HttpStatusCode.Created,

@@ -3,6 +3,7 @@ import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
 import { IUpdateActivity } from "../../../application/activity/UpdateActivity";
 import { Controller, HttpResponse } from "../../../domain/Controller";
+import { Activity } from "../../../domain/Activity";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
@@ -13,18 +14,11 @@ export const zodValidationActivitySchema = z.object({
 
 export class UpdateActivityController implements Controller<Request> {
   constructor(readonly activityService: IUpdateActivity) {}
-
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
-    const { description, location, name, userID } =
-      zodValidationActivitySchema.parse(req.body);
     try {
-      await this.activityService.invoke(id, {
-        description,
-        location,
-        userID,
-        name,
-      });
+      const data = req.body as Activity;
+      await this.activityService.invoke(id, data);
       return {
         msg: "Activity updated sucessfully",
         statusCode: HttpStatusCode.Ok,
