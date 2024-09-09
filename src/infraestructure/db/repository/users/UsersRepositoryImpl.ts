@@ -1,9 +1,9 @@
-import { Prisma, User } from "@prisma/client";
-import { IUsersRepository } from "../../../../../domain/users/UsersRepository";
 import { prisma } from "../../client/PrismaClient";
+import { IUsersRepository } from "../../../../domain/users/UsersRepository";
+import { Users } from "../../../../domain/Users";
 
 export class UsersRepositoryImpl implements IUsersRepository {
-  async create(data: Prisma.UserUncheckedCreateInput): Promise<User> {
+  async create(data: Users): Promise<Users> {
     const user = await prisma.user.create({
       data: {
         ...data,
@@ -12,7 +12,7 @@ export class UsersRepositoryImpl implements IUsersRepository {
     return user;
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<Users | null> {
     const user = await prisma.user.findFirst({
       where: {
         email,

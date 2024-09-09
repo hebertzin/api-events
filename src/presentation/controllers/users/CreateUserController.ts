@@ -1,8 +1,8 @@
 import { Request } from "express";
-import { HttpStatusCode } from "../../../utils/HttpStatusCode";
+import { HttpStatusCode } from "../../../infraestructure/utils/HttpStatusCode";
 import { z } from "zod";
-import { ICreateUserService } from "../../../../../domain/CreateUserService";
-import { Controller, HttpResponse } from "../../../../../domain/Controller";
+import { ICreateUserService } from "../../../domain/CreateUserService";
+import { Controller, HttpResponse } from "../../../domain/Controller";
 
 export const zodValidationUserSchema = z.object({
   email: z.string().email(),

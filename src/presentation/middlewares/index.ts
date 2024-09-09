@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { JwtService } from "../../../../domain/JwtService";
-import { HttpStatusCode } from "../../utils/HttpStatusCode";
-import { JwtServiceImpl } from "../../jwt/JwtServiceImpl";
+import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
+import { JwtServiceImpl } from "../../infraestructure/jwt/JwtServiceImpl";
 
 interface User {
   id: string;

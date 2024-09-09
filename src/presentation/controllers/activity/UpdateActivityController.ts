@@ -1,8 +1,8 @@
 import { Request } from "express";
-import { HttpStatusCode } from "../../../utils/HttpStatusCode";
+import { HttpStatusCode } from "../../../infraestructure/utils/HttpStatusCode";
 import { z } from "zod";
-import { IUpdateActivity } from "../../../../application/activity/UpdateActivity";
-import { Controller, HttpResponse } from "../../../../domain/Controller";
+import { IUpdateActivity } from "../../../application/activity/UpdateActivity";
+import { Controller, HttpResponse } from "../../../domain/Controller";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),

@@ -1,6 +1,6 @@
 import { Activity, Prisma } from "@prisma/client";
 import { prisma } from "../../client/PrismaClient";
-import { IActivityRepository } from "../../../../../domain/activity/ActivityRepository";
+import { IActivityRepository } from "../../../../domain/activity/ActivityRepository";
 
 export class ActivityRepositoryImpl implements IActivityRepository {
   async create(data: Prisma.ActivityUncheckedCreateInput): Promise<Activity> {
@@ -36,7 +36,7 @@ export class ActivityRepositoryImpl implements IActivityRepository {
 
   async update(
     id: string,
-    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
+    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>
   ): Promise<Activity | null> {
     const updatedActivity = await prisma.activity.update({
       where: { id },

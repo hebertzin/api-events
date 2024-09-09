@@ -1,6 +1,6 @@
 import express, { Express } from "express";
 import { loggerService } from "./infraestructure/logger/LoggerService";
-import { AppRoutes } from "./infraestructure/express/routes/routes";
+import { AppRoutes } from "./presentation/routes/routes";
 import cors from "cors";
 
 export class ExpressApp {
