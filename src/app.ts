@@ -1,6 +1,6 @@
 import express, { Express } from "express";
-import { loggerService } from "./api/infraestructure/logger/LoggerService";
-import { AppRoutes } from "./api/infraestructure/express/routes/routes";
+import { loggerService } from "./infraestructure/logger/LoggerService";
+import { AppRoutes } from "./infraestructure/express/routes/routes";
 import cors from "cors";
 
 export class ExpressApp {
@@ -17,7 +17,7 @@ export class ExpressApp {
     this.expressApp.use(
       cors({
         origin: process.env.ORIGIN,
-      }),
+      })
     );
   }
 

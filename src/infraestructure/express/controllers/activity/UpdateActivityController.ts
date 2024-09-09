@@ -2,7 +2,7 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../utils/HttpStatusCode";
 import { z } from "zod";
 import { IUpdateActivity } from "../../../../application/activity/UpdateActivity";
-import { Controller, HttpResponse } from "../../../../../domain/Controller";
+import { Controller, HttpResponse } from "../../../../domain/Controller";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),

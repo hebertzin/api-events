@@ -1,5 +1,5 @@
-import { Activity } from "../../domain/activity/ActivityRepository";
-import { AppError } from "../../errors/errors";
+import { Activity } from "../../domain/Activity";
+import { AppError } from "../errors/errors";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
 import { IActivityRepository } from "../../domain/activity/ActivityRepository";
 import { ILogger } from "../../domain/Logger";

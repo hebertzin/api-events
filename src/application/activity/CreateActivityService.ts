@@ -1,10 +1,8 @@
-import {
-  Activity,
-  IActivityRepository,
-} from "../../domain/activity/ActivityRepository";
 import { ILogger } from "../../domain/Logger";
-import { AppError } from "../../errors/errors";
+import { AppError } from "../errors/errors";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
+import { Activity } from "../../domain/Activity";
+import { IActivityRepository } from "../../domain/activity/ActivityRepository";
 
 export interface ICreateActivityService {
   invoke(activity: Activity): Promise<Activity>;
