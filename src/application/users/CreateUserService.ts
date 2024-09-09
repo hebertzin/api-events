@@ -2,24 +2,19 @@ import { ICreateUserService } from "../../domain/CreateUserService";
 import { HashService } from "../../domain/HashService";
 import { ILogger } from "../../domain/Logger";
 import { IUsersRepository } from "../../domain/users/UsersRepository";
-import { AppError, UserAlreadyExist } from "../../errors/errors";
+import { AppError, UserAlreadyExist } from "../errors/errors";
 import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
-
-export type User = {
-  email: string;
-  name: string;
-  password: string;
-};
+import { Users } from "../../domain/Users";
 
 export class CreateUserService implements ICreateUserService {
   constructor(
     readonly usersRepository: IUsersRepository,
     readonly bcrypt: HashService,
-    readonly logger: ILogger,
+    readonly logger: ILogger
   ) {}
 
-  async invoke({ name, email, password }: User): Promise<User> {
-    const existentUser = await this.usersRepository.findByEmail(email);
+  async invoke(user: Users): Promise<Users> {
+    const existentUser = await this.usersRepository.findByEmail(user.email);
 
     if (existentUser) {
       this.logger.warn(`User ${existentUser.email} already exist in database`);
@@ -27,21 +22,19 @@ export class CreateUserService implements ICreateUserService {
     }
 
     try {
-      const passwordHashed = await this.bcrypt.hash(password);
-
-      const user = await this.usersRepository.create({
-        email,
-        name,
+      const passwordHashed = await this.bcrypt.hash(user.password);
+      return await this.usersRepository.create({
+        email: user.email,
+        name: user.name,
         password: passwordHashed,
       });
-      return user;
     } catch (error) {
       this.logger.error(
-        `Some Internal server error has been ocurred trying create a new user : ${error}`,
+        `Some Internal server error has been ocurred trying create a new user : ${error}`
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }

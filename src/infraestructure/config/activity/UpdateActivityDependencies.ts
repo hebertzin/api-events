@@ -7,10 +7,10 @@ const activityRepository = new ActivityRepositoryImpl();
 
 const updateActivityService = new UpdateActivityService(
   activityRepository,
-  loggerService
+  loggerService,
 );
 const updateActivityController = new UpdateActivityController(
-  updateActivityService
+  updateActivityService,
 );
 
 export { updateActivityController };

@@ -10,7 +10,7 @@ const hashService = new BcryptHashService();
 const createUserService = new CreateUserService(
   usersRepository,
   hashService,
-  loggerService
+  loggerService,
 );
 
 const createUserController = new CreateUserController(createUserService);

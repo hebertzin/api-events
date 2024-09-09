@@ -17,7 +17,7 @@ export class ExpressApp {
     this.expressApp.use(
       cors({
         origin: process.env.ORIGIN,
-      })
+      }),
     );
   }
 
