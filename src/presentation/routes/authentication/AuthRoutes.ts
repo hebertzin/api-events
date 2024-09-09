@@ -1,6 +1,5 @@
 import { Request, Router } from "express";
-import { createUserController } from "../../../config/UsersDependencie";
-import { authController } from "../../../config/LoginDependencie";
+import { authController } from "../../../infraestructure/config/LoginDependencie";
 
 export const authRoutes = Router();
 

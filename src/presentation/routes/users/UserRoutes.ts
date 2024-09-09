@@ -1,5 +1,5 @@
 import { Request, Router } from "express";
-import { createUserController } from "../../../config/UsersDependencie";
+import { createUserController } from "../../../infraestructure/config/UsersDependencie";
 
 export const userRoutes = Router();
 

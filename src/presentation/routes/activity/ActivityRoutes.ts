@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { createActivityController } from "../../../config/activity/CreateActivityDependencie";
-import { deleteActivityController } from "../../../config/activity/DeleteActivityDependencies";
-import { getActivityController } from "../../../config/activity/GetActivityDependencies";
-import { listActivityController } from "../../../config/activity/LIstActivityDependencies";
-import { updateActivityController } from "../../../config/activity/UpdateActivityDependencies";
+import { createActivityController } from "../../../infraestructure/config/activity/CreateActivityDependencie";
+import { deleteActivityController } from "../../../infraestructure/config/activity/DeleteActivityDependencies";
+import { getActivityController } from "../../../infraestructure/config/activity/GetActivityDependencies";
+import { listActivityController } from "../../../infraestructure/config/activity/LIstActivityDependencies";
+import { updateActivityController } from "../../../infraestructure/config/activity/UpdateActivityDependencies";
 
 export const activiyRoutes = Router();
 
