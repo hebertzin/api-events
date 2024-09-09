@@ -1,4 +1,4 @@
-import { JwtService } from "../../../domain/JwtService";
+import { JwtService } from "../../domain/JwtService";
 import jwt from "jsonwebtoken";
 
 export class JwtServiceImpl implements JwtService {

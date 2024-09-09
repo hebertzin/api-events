@@ -1,5 +1,5 @@
 import { createLogger, transports, format, Logger } from "winston";
-import { ILogger } from "../../../domain/Logger";
+import { ILogger } from "../../domain/Logger";
 
 class LoggerService implements ILogger {
   private logger: Logger;
@@ -13,7 +13,7 @@ class LoggerService implements ILogger {
         format.colorize(),
         format.printf(({ level, message, timestamp }) => {
           return `${timestamp} ${level}: ${message}`;
-        }),
+        })
       ),
       transports: [
         new transports.Console(),

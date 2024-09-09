@@ -4,7 +4,7 @@ import { ILogger } from "../../domain/Logger";
 import { LoginParams, LoginService, Token } from "../../domain/LoginService";
 import { IUsersRepository } from "../../domain/users/UsersRepository";
 import { AppError, InvalidCredentials, NotFound } from "../errors/errors";
-import { HttpStatusCode } from "../../infraestructure/utils/HttpStatusCode";
+import { HttpStatusCode } from "../../domain/HttpStatusCode";
 
 export class AuthenticationService implements LoginService {
   constructor(

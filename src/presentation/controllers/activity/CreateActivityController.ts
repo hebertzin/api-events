@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { HttpStatusCode } from "../../../infraestructure/utils/HttpStatusCode";
+import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
 import { ICreateActivityService } from "../../../application/activity/CreateActivityService";
 import { Controller, HttpResponse } from "../../../domain/Controller";
