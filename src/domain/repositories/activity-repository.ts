@@ -1,4 +1,4 @@
-import { Activity } from "../Activity";
+import { Activity } from "../entity/activity-entity";
 
 export interface IActivityRepository {
   create(data: Activity): Promise<Activity>;

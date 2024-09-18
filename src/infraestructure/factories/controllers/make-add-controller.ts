@@ -1,4 +1,4 @@
-import { Controller } from "../../../domain/Controller";
+import { Controller } from "../../../domain/controller";
 import { CreateUserController } from "../../../presentation/controllers/users/CreateUserController";
 import { makeDbAddUser } from "../usecases/make-db-add-user";
 

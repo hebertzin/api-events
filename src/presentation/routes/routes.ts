@@ -11,5 +11,5 @@ router.use("/authentication/user", authRoutes);
 router.use(
   "/activity",
   authMiddleware.isAuthorized.bind(authMiddleware),
-  activiyRoutes
+  activiyRoutes,
 );

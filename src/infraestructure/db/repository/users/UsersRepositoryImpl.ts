@@ -1,6 +1,6 @@
 import { prisma } from "../../client/PrismaClient";
 import { IUsersRepository } from "../../../../domain/users/UsersRepository";
-import { Users } from "../../../../domain/Users";
+import { Users } from "../../../../domain/entity/user-entity";
 
 export class UsersRepositoryImpl implements IUsersRepository {
   async create(data: Users): Promise<Users> {

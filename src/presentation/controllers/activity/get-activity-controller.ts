@@ -1,7 +1,7 @@
 import { Request } from "express";
-import { HttpStatusCode } from "../../../domain/HttpStatusCode";
+import { HttpStatusCode } from "../../../domain/http-status";
 import { z } from "zod";
-import { Controller, HttpResponse } from "../../../domain/Controller";
+import { Controller, HttpResponse } from "../../../domain/controller";
 import { IGetActivity } from "../../../application/usecases/activity/get-activity-use-case";
 
 export const zodValidationActivitySchema = z.object({

@@ -1,5 +1,5 @@
 import { CreateUserService } from "../../../application/usecases/users/create-user-use-case";
-import { ICreateUserService } from "../../../domain/CreateUserService";
+import { ICreateUserService } from "../../../domain/create-user";
 import { BcryptHashService } from "../../bcrypt/hash";
 import { UsersRepositoryImpl } from "../../db/repository/users/UsersRepositoryImpl";
 import { loggerService } from "../../logger/logging";

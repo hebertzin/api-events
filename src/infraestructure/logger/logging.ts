@@ -1,5 +1,5 @@
 import { createLogger, transports, format, Logger } from "winston";
-import { ILogger } from "../../domain/Logger";
+import { ILogger } from "../../domain/logging";
 
 class LoggerService implements ILogger {
   private logger: Logger;

@@ -7,6 +7,6 @@ export type Token = {
   token: string;
 };
 
-export interface LoginService {
+export interface Login {
   invoke(data: LoginParams): Promise<Token>;
 }

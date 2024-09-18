@@ -1,21 +1,19 @@
-import { ICreateUserService } from "../../../domain/CreateUserService";
-import { HashService } from "../../../domain/HashService";
-import { ILogger } from "../../../domain/Logger";
+import { ICreateUserService } from "../../../domain/entity/user-entity";
+import { Hash } from "../../../domain/hash";
+import { Logging } from "../../../domain/logging";
 import { IUsersRepository } from "../../../domain/users/UsersRepository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
-import { HttpStatusCode } from "../../../domain/HttpStatusCode";
-import { Users } from "../../../domain/Users";
+import { HttpStatusCode } from "../../../domain/http-status";
+import { User } from "../../../domain/entity/user-entity";
 
 export class CreateUserService implements ICreateUserService {
   constructor(
     readonly usersRepository: IUsersRepository,
-    readonly bcrypt: HashService,
-    readonly logger: ILogger,
+    readonly bcrypt: Hash,
+    readonly logger: Logging
   ) {}
-
-  async invoke(user: Users): Promise<Users> {
+  async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
-
     if (existentUser) {
       this.logger.warn(`User ${existentUser.email} already exist in database`);
       throw new UserAlreadyExist("User already exist", HttpStatusCode.Conflict);
@@ -30,11 +28,11 @@ export class CreateUserService implements ICreateUserService {
       });
     } catch (error) {
       this.logger.error(
-        `Some Internal server error has been ocurred trying create a new user : ${error}`,
+        `Some Internal server error has been ocurred trying create a new user : ${error}`
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }

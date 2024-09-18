@@ -1,4 +1,8 @@
-import { User } from "../application/usecases/users/create-user-use-case";
+export type User = {
+  name: string;
+  email: string;
+  password: string;
+};
 
 export interface ICreateUserService {
   invoke(data: User): Promise<User>;

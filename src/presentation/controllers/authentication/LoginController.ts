@@ -1,8 +1,8 @@
 import { Request } from "express";
-import { HttpStatusCode } from "../../../domain/HttpStatusCode";
+import { HttpStatusCode } from "../../../domain/http-status";
 import { any, z } from "zod";
-import { LoginService } from "../../../domain/LoginService";
-import { Controller, HttpResponse } from "../../../domain/Controller";
+import { LoginService } from "../../../domain/auth";
+import { Controller, HttpResponse } from "../../../domain/controller";
 
 export const zodValidationLoginSchema = z.object({
   email: z.string().email(),

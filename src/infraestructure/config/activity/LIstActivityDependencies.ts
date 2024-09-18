@@ -7,7 +7,7 @@ const activityRepository = new ActivityRepositoryImpl();
 
 const listActivityService = new ListActivityService(
   activityRepository,
-  loggerService
+  loggerService,
 );
 
 const listActivityController = new ListActivityController(listActivityService);

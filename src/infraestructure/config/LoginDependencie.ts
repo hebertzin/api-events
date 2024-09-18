@@ -11,7 +11,7 @@ const loginService = new AuthenticationService(
   usersRepository,
   new JwtServiceImpl(),
   new BcryptHashService(),
-  logging
+  logging,
 );
 
 export const authController = new LoginController(loginService);
