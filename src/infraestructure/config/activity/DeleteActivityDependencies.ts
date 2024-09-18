@@ -7,11 +7,11 @@ const activityRepository = new ActivityRepositoryImpl();
 
 const deleteActivityService = new DeleteActivityService(
   activityRepository,
-  loggerService
+  loggerService,
 );
 
 const deleteActivityController = new DeleteActivityController(
-  deleteActivityService
+  deleteActivityService,
 );
 
 export { deleteActivityController };

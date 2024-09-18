@@ -6,11 +6,11 @@ import { loggerService } from "../../logger/LoggerService";
 const activitRepository = new ActivityRepositoryImpl();
 const createActivityService = new CreateActivityService(
   activitRepository,
-  loggerService
+  loggerService,
 );
 
 const createActivityController = new CreateActivityController(
-  createActivityService
+  createActivityService,
 );
 
 export { createActivityController };

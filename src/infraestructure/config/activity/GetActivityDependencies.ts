@@ -7,7 +7,7 @@ const activityRepository = new ActivityRepositoryImpl();
 
 const getActivityService = new GetActivityService(
   activityRepository,
-  loggerService
+  loggerService,
 );
 
 const getActivityController = new GetActivityController(getActivityService);
