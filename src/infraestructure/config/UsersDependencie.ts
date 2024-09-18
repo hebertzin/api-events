@@ -1,8 +1,8 @@
 import { UsersRepositoryImpl } from "../db/repository/users/UsersRepositoryImpl";
-import { CreateUserService } from "../../application/users/CreateUserService";
+import { CreateUserService } from "../../application/usecases/users/create-user-use-case";
 import { CreateUserController } from "../../presentation/controllers/users/CreateUserController";
-import { BcryptHashService } from "../bcrypt/BcryptHashServiceImpl";
-import { loggerService } from "../logger/LoggerService";
+import { BcryptHashService } from "../bcrypt/hash";
+import { loggerService } from "../logger/logging";
 
 const usersRepository = new UsersRepositoryImpl();
 const hashService = new BcryptHashService();

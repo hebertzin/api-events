@@ -1,13 +1,14 @@
 import { ActivityRepositoryImpl } from "../../db/repository/activity/ActivitRepositoryImpl";
-import { loggerService } from "../../logger/LoggerService";
-import { DeleteActivityService } from "../../../application/activity/DeleteActivity";
-import { DeleteActivityController } from "../../../presentation/controllers/activity/DeleteActivityController";
+import { logging } from "../../logger/logging";
+import { DeleteActivityService } from "../../../application/usecases/activity/delete-activity-use-case";
+import { DeleteActivityController } from "../../../presentation/controllers/activity/delete-actvity-controller";
 
 const activityRepository = new ActivityRepositoryImpl();
 
 const deleteActivityService = new DeleteActivityService(
   activityRepository,
-  loggerService,
+
+  logging,
 );
 
 const deleteActivityController = new DeleteActivityController(
