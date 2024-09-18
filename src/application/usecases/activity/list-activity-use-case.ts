@@ -11,18 +11,18 @@ export interface IListActivity {
 export class ListActivityService implements IListActivity {
   constructor(
     readonly activityRepository: IActivityRepository,
-    readonly logger: Logging
+    readonly logger: Logging,
   ) {}
   async invoke(user_id: string): Promise<Activity[] | null> {
     try {
       return await this.activityRepository.findMany(user_id);
     } catch (error) {
       this.logger.error(
-        `Some error has been ocurred trying  get a list of activities ${error}`
+        `Some error has been ocurred trying  get a list of activities ${error}`,
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

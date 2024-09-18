@@ -1,14 +1,14 @@
 import { ICreateUserService } from "../../../domain/entity/user-entity";
 import { Hash } from "../../../domain/hash";
 import { Logging } from "../../../domain/logging";
-import { IUsersRepository } from "../../../domain/users/UsersRepository";
+import { UserRepository } from "../../../domain/users/UsersRepository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { User } from "../../../domain/entity/user-entity";
 
 export class CreateUserService implements ICreateUserService {
   constructor(
-    readonly usersRepository: IUsersRepository,
+    readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
     readonly logger: Logging
   ) {}

@@ -1,19 +1,19 @@
 import { Hash } from "../../../domain/hash";
 import { Jwt } from "../../../domain/jwt";
 import { Logging } from "../../../domain/logging";
-import { LoginParams, Login, Token } from "../../../domain/auth";
-import { IUsersRepository } from "../../../domain/users/UsersRepository";
+import { Authentication, Login, Token } from "../../../domain/auth";
+import { UserRepository } from "../../../domain/users/UsersRepository";
 import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 
 export class AuthenticationService implements Login {
   constructor(
-    readonly usersRepository: IUsersRepository,
+    readonly usersRepository: UserRepository,
     readonly jwtService: Jwt,
     readonly bcrypt: Hash,
     readonly logger: Logging
   ) {}
-  async invoke(user: LoginParams): Promise<Token> {
+  async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (!existentUser) {
       throw new NotFound("User not found", HttpStatusCode.NotFound);

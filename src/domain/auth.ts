@@ -1,4 +1,4 @@
-export type LoginParams = {
+export type Authentication = {
   email: string;
   password: string;
 };
@@ -8,5 +8,5 @@ export type Token = {
 };
 
 export interface Login {
-  invoke(data: LoginParams): Promise<Token>;
+  invoke(data: Authentication): Promise<Token>;
 }
