@@ -2,7 +2,7 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { IListActivity } from "../../../application/usecases/activity/list-activity-use-case";
+import { ListActivity } from "../../../application/usecases/activity/list-activity-use-case";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
@@ -12,11 +12,11 @@ export const zodValidationActivitySchema = z.object({
 });
 
 export class ListActivityController implements Controller<Request> {
-  constructor(readonly listActivity: IListActivity) {}
+  constructor(readonly listActivity: ListActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
     try {
-      const activities = await this.listActivity.invoke({ user_id });
+      const activities = await this.listActivity.invoke(user_id);
       return {
         msg: "Get a list of activities sucessfully",
         statusCode: HttpStatusCode.Ok,

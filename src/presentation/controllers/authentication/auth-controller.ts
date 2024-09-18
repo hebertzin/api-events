@@ -1,17 +1,16 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { any, z } from "zod";
-import { LoginService } from "../../../domain/auth";
+import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/controller";
+import { Login } from "../../../domain/auth";
 
 export const zodValidationLoginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
 });
 
-export class LoginController implements Controller<Request> {
-  constructor(readonly loginService: LoginService) {}
-
+export class AuthenticationController implements Controller<Request> {
+  constructor(readonly loginService: Login) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { email, password } = req.body;
     try {

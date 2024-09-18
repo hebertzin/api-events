@@ -6,7 +6,7 @@ import { UserRepository } from "../../../domain/users/UsersRepository";
 import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 
-export class AuthenticationService implements Login {
+export class AuthenticationUseCase implements Login {
   constructor(
     readonly usersRepository: UserRepository,
     readonly jwtService: Jwt,

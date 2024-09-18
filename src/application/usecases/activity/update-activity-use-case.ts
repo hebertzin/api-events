@@ -15,8 +15,7 @@ export class UpdateActivityUseCase implements UpdateActivity {
   ) {}
   async invoke(id: string, data: Activity): Promise<Activity | null> {
     try {
-      const activity = await this.activityRepository.update(id, data);
-      return activity;
+      return await this.activityRepository.update(id, data);
     } catch (error) {
       this.logging.error(
         `Some error has been ocurred trying update an activity ${error}`

@@ -2,7 +2,7 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { IDeleteActivity } from "../../../application/usecases/activity/delete-activity-use-case";
+import { DeleteActivity } from "../../../application/usecases/activity/delete-activity-use-case";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
@@ -12,11 +12,11 @@ export const zodValidationActivitySchema = z.object({
 });
 
 export class DeleteActivityController implements Controller<Request> {
-  constructor(readonly deleteActivity: IDeleteActivity) {}
+  constructor(readonly deleteActivity: DeleteActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {
-      await this.deleteActivity.invoke({ id });
+      await this.deleteActivity.invoke(id);
       return {
         msg: "Activity deleted sucessfully",
         statusCode: HttpStatusCode.Ok,

@@ -9,18 +9,18 @@ export interface DeleteActivity {
 export class DeleteActivityUseCase implements DeleteActivity {
   constructor(
     readonly activityRepository: IActivityRepository,
-    readonly logging: Logging
+    readonly logging: Logging,
   ) {}
   async invoke(activity_id: string): Promise<void> {
     try {
       await this.activityRepository.delete(activity_id);
     } catch (error) {
       this.logging.error(
-        `Some error has been ocurred trying delete a new activity ${error}`
+        `Some error has been ocurred trying delete a new activity ${error}`,
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

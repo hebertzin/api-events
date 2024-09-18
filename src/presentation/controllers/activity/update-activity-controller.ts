@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { z } from "zod";
-import { IUpdateActivity } from "../../../application/usecases/activity/update-activity-use-case";
+import { UpdateActivity } from "../../../application/usecases/activity/update-activity-use-case";
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { Activity } from "../../../domain/entity/activity-entity";
 
@@ -13,7 +13,7 @@ export const zodValidationActivitySchema = z.object({
 });
 
 export class UpdateActivityController implements Controller<Request> {
-  constructor(readonly activityService: IUpdateActivity) {}
+  constructor(readonly activityService: UpdateActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {

@@ -15,9 +15,8 @@ export class CreateActivityUseCase implements CreateActivity {
   ) {}
   async invoke(data: Activity): Promise<Activity> {
     try {
-      const activity = await this.activityRepository.create(data);
       this.logging.info("New activity was created sucessfully");
-      return activity;
+      return await this.activityRepository.create(data);
     } catch (error) {
       this.logging.error(
         `Some error has been ocurred trying create a new activity ${error}`
