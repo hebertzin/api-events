@@ -1,16 +1,16 @@
-import { CreateActivityController } from "../../../presentation/controllers/activity/CreateActivityController";
+import { CreateActivityController } from "../../../presentation/controllers/activity/create-activity-controller";
 import { CreateActivityService } from "../../../application/usecases/activity/create-activity-use-case";
 import { ActivityRepositoryImpl } from "../../db/repository/activity/ActivitRepositoryImpl";
-import { loggerService } from "../../logger/LoggerService";
+import { logging } from "../../logger/logging";
 
 const activitRepository = new ActivityRepositoryImpl();
 const createActivityService = new CreateActivityService(
   activitRepository,
-  loggerService,
+  logging
 );
 
 const createActivityController = new CreateActivityController(
-  createActivityService,
+  createActivityService
 );
 
 export { createActivityController };

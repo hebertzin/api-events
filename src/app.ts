@@ -1,6 +1,6 @@
 import express, { Express } from "express";
-import { loggerService } from "./infraestructure/logger/LoggerService";
-import { AppRoutes } from "./presentation/routes/routes";
+import { logging } from "./infraestructure/logger/logging";
+import { router } from "./presentation/routes/routes";
 import cors from "cors";
 
 export class ExpressApp {
@@ -17,17 +17,17 @@ export class ExpressApp {
     this.expressApp.use(
       cors({
         origin: process.env.ORIGIN,
-      }),
+      })
     );
   }
 
   private routes() {
-    this.expressApp.use("/api/v1", AppRoutes);
+    this.expressApp.use("/api/v1", router);
   }
 
   public start(port: number | string) {
     return this.expressApp.listen(port, () => {
-      loggerService.info(`Sever is running on port ${port}!`);
+      logging.info(`Sever is running on port ${port}!`);
     });
   }
 

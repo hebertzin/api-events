@@ -1,15 +1,15 @@
 import { Router } from "express";
-import { userRoutes } from "./users/UserRoutes";
-import { authRoutes } from "./authentication/AuthRoutes";
-import { activiyRoutes } from "./activity/ActivityRoutes";
-import { authMiddleware } from "../middlewares";
+import { userRoutes } from "./users/user-routes";
+import { authRoutes } from "./authentication/auth-routes";
+import { activiyRoutes } from "./activity/activty-routes";
+import { authMiddleware } from "../middlewares/auth-middleware";
 
-export const AppRoutes = Router();
+export const router = Router();
 
-AppRoutes.use("/users", userRoutes);
-AppRoutes.use("/authentication/user", authRoutes);
-AppRoutes.use(
+router.use("/users", userRoutes);
+router.use("/authentication/user", authRoutes);
+router.use(
   "/activity",
   authMiddleware.isAuthorized.bind(authMiddleware),
-  activiyRoutes,
+  activiyRoutes
 );
