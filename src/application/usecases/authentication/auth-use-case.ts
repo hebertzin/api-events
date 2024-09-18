@@ -11,7 +11,7 @@ export class AuthenticationService implements Login {
     readonly usersRepository: UserRepository,
     readonly jwtService: Jwt,
     readonly bcrypt: Hash,
-    readonly logger: Logging
+    readonly logging: Logging
   ) {}
   async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
@@ -23,7 +23,7 @@ export class AuthenticationService implements Login {
       existentUser.password
     );
     if (!isValidPassword) {
-      this.logger.warn(`User credential are invalid ${user.email}`);
+      this.logging.warn(`User credential are invalid ${user.email}`);
       throw new InvalidCredentials(
         "Invalid credentials",
         HttpStatusCode.Unauthorized
@@ -33,7 +33,7 @@ export class AuthenticationService implements Login {
       const token = this.jwtService.sign(existentUser, { expiresIn: "1d" });
       return { token };
     } catch (error) {
-      this.logger.error(
+      this.logging.error(
         `Some internal server error has been ocurred trying log user : ${error}`
       );
       throw new AppError(

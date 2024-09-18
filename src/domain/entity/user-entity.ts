@@ -3,7 +3,3 @@ export type User = {
   email: string;
   password: string;
 };
-
-export interface ICreateUserService {
-  invoke(data: User): Promise<User>;
-}

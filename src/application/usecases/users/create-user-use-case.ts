@@ -1,4 +1,3 @@
-import { ICreateUserService } from "../../../domain/entity/user-entity";
 import { Hash } from "../../../domain/hash";
 import { Logging } from "../../../domain/logging";
 import { UserRepository } from "../../../domain/users/UsersRepository";
@@ -6,16 +5,20 @@ import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { User } from "../../../domain/entity/user-entity";
 
-export class CreateUserService implements ICreateUserService {
+export interface CreateUser {
+  invoke(data: User): Promise<User>;
+}
+
+export class CreateUserUseCase implements CreateUser {
   constructor(
     readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
-    readonly logger: Logging
+    readonly logging: Logging
   ) {}
   async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (existentUser) {
-      this.logger.warn(`User ${existentUser.email} already exist in database`);
+      this.logging.warn(`User ${existentUser.email} already exist in database`);
       throw new UserAlreadyExist("User already exist", HttpStatusCode.Conflict);
     }
 
@@ -27,7 +30,7 @@ export class CreateUserService implements ICreateUserService {
         password: passwordHashed,
       });
     } catch (error) {
-      this.logger.error(
+      this.logging.error(
         `Some Internal server error has been ocurred trying create a new user : ${error}`
       );
       throw new AppError(
