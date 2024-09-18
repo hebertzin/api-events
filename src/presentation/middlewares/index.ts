@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtService } from "../../../../domain/JwtService";
+import { JwtService } from "../../domain/JwtService";
 import { HttpStatusCode } from "../../domain/HttpStatusCode";
 import { JwtServiceImpl } from "../../infraestructure/jwt/JwtServiceImpl";
 

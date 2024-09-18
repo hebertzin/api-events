@@ -2,7 +2,7 @@ import { JwtService } from "../../domain/JwtService";
 import jwt from "jsonwebtoken";
 
 export class JwtServiceImpl implements JwtService {
-  private readonly secretKey = process.env.SECRET;
+  private readonly secretKey = process.env.SECRET as string;
 
   sign(payload: string | object | Buffer, options?: jwt.SignOptions): string {
     return jwt.sign(payload, this.secretKey, options);

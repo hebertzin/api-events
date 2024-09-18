@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
-import { IUpdateActivity } from "../../../application/activity/UpdateActivity";
+import { IUpdateActivity } from "../../../application/usecases/activity/update-activity-use-case";
 import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Activity } from "../../../domain/Activity";
 
@@ -23,7 +23,7 @@ export class UpdateActivityController implements Controller<Request> {
         msg: "Activity updated sucessfully",
         statusCode: HttpStatusCode.Ok,
       };
-    } catch (error) {
+    } catch (error: any) {
       return { msg: error.message, statusCode: error.code };
     }
   }

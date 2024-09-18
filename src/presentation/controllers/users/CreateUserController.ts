@@ -27,8 +27,8 @@ export class CreateUserController implements Controller<Request> {
         msg: "User created successfully",
         body: { email, name },
       };
-    } catch (error) {
-      return { msg: error.message, statusCode: error.code };
+    } catch (error: any) {
+      return { msg: error.message, statusCode: error.statusCode };
     }
   }
 }

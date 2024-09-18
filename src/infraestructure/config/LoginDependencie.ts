@@ -1,4 +1,4 @@
-import { AuthenticationService } from "../../application/authentication/AuthenticationService";
+import { AuthenticationService } from "../../application/usecases/authentication/auth-use-case";
 import { UsersRepositoryImpl } from "../db/repository/users/UsersRepositoryImpl";
 import { BcryptHashService } from "../bcrypt/BcryptHashServiceImpl";
 import { loggerService } from "../logger/LoggerService";
@@ -11,7 +11,7 @@ const loginService = new AuthenticationService(
   usersRepository,
   new JwtServiceImpl(),
   new BcryptHashService(),
-  loggerService,
+  loggerService
 );
 
 export const authController = new LoginController(loginService);

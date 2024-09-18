@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
-import { ICreateActivityService } from "../../../application/activity/CreateActivityService";
+import { ICreateActivityService } from "../../../application/usecases/activity/create-activity-use-case";
 import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Activity } from "../../../domain/Activity";
 export const zodValidationActivitySchema = z.object({
@@ -21,7 +21,7 @@ export class CreateActivityController implements Controller<Request> {
         msg: "Activity Created sucessfully",
         statusCode: HttpStatusCode.Created,
       };
-    } catch (error) {
+    } catch (error: any) {
       return { msg: error.message, statusCode: error.code };
     }
   }

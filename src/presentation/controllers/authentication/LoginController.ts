@@ -1,6 +1,6 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatusCode";
-import { z } from "zod";
+import { any, z } from "zod";
 import { LoginService } from "../../../domain/LoginService";
 import { Controller, HttpResponse } from "../../../domain/Controller";
 
@@ -25,7 +25,7 @@ export class LoginController implements Controller<Request> {
         msg: "User log in",
         body: { token },
       };
-    } catch (error) {
+    } catch (error: any) {
       return { msg: error.message, statusCode: error.code };
     }
   }

@@ -2,7 +2,7 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-import { IDeleteActivity } from "../../../application/activity/DeleteActivity";
+import { IDeleteActivity } from "../../../application/usecases/activity/delete-activity-use-case";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
@@ -21,7 +21,7 @@ export class DeleteActivityController implements Controller<Request> {
         msg: "Activity deleted sucessfully",
         statusCode: HttpStatusCode.Ok,
       };
-    } catch (error) {
+    } catch (error: any) {
       return { msg: error.message, statusCode: error.code };
     }
   }

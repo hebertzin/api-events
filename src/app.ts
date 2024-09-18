@@ -17,7 +17,7 @@ export class ExpressApp {
     this.expressApp.use(
       cors({
         origin: process.env.ORIGIN,
-      }),
+      })
     );
   }
 
@@ -27,7 +27,7 @@ export class ExpressApp {
 
   public start(port: number | string) {
     return this.expressApp.listen(port, () => {
-      loggerService.info(`Sever is running on por ${port}!`);
+      loggerService.info(`Sever is running on port ${port}!`);
     });
   }
 

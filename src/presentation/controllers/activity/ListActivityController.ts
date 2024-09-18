@@ -2,7 +2,7 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatusCode";
 import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-import { IListActivity } from "../../../application/activity/ListActivityService";
+import { IListActivity } from "../../../application/usecases/activity/list-activity-use-case";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
@@ -22,7 +22,7 @@ export class ListActivityController implements Controller<Request> {
         statusCode: HttpStatusCode.Ok,
         body: activities,
       };
-    } catch (error) {
+    } catch (error: any) {
       return { msg: error.message, statusCode: error.code };
     }
   }

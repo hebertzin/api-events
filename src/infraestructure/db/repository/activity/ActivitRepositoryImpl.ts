@@ -36,7 +36,7 @@ export class ActivityRepositoryImpl implements IActivityRepository {
 
   async update(
     id: string,
-    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
+    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>
   ): Promise<Activity | null> {
     const updatedActivity = await prisma.activity.update({
       where: { id },
