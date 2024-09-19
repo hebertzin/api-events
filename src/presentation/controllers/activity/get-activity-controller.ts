@@ -1,15 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { z } from "zod";
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { GetActivity } from "../../../application/usecases/activity/get-activity-use-case";
-
-export const zodValidationActivitySchema = z.object({
-  name: z.string(),
-  description: z.string(),
-  userID: z.string(),
-  location: z.string(),
-});
 
 export class GetActivityController implements Controller<Request> {
   constructor(readonly listActivity: GetActivity) {}
@@ -22,7 +14,7 @@ export class GetActivityController implements Controller<Request> {
         statusCode: HttpStatusCode.Ok,
         body: activity,
       };
-    } catch (error: any) {
+    } catch (error) {
       return { msg: error.message, statusCode: error.code };
     }
   }
