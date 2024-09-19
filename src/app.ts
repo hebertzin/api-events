@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import { logging } from "./infraestructure/logger/logging";
+import { logging } from "./infraestructure/logging/logging";
 import { router } from "./presentation/routes/routes";
 import cors from "cors";
 
@@ -27,7 +27,7 @@ export class ExpressApp {
 
   public start(port: number | string) {
     return this.expressApp.listen(port, () => {
-      logging.info(`Sever is running on port ${port}!`);
+      logging.info(`Server is running on port ${port}!`);
     });
   }
 

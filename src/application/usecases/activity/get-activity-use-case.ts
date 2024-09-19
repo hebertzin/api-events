@@ -1,4 +1,4 @@
-import { Activity } from "../../../domain/entity/activity-entity";
+import { Activity } from "../../../domain/entities/activity-entity";
 import { AppError } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { IActivityRepository } from "../../../domain/repositories/activity-repository";

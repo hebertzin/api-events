@@ -1,9 +1,9 @@
 import { Hash } from "../../../domain/hash";
 import { Logging } from "../../../domain/logging";
-import { UserRepository } from "../../../domain/users/UsersRepository";
+import { UserRepository } from "../../../domain/users/users-repository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { User } from "../../../domain/entity/user-entity";
+import { User } from "../../../domain/entities/user-entity";
 
 export interface CreateUser {
   invoke(data: User): Promise<User>;
@@ -21,14 +21,15 @@ export class CreateUserUseCase implements CreateUser {
       this.logging.warn(`User ${existentUser.email} already exist in database`);
       throw new UserAlreadyExist("User already exist", HttpStatusCode.Conflict);
     }
-
     try {
+      const { name, email } = user;
       const passwordHashed = await this.bcrypt.hash(user.password);
-      return await this.usersRepository.create({
-        email: user.email,
-        name: user.name,
+      const newUser: User = {
+        name,
+        email,
         password: passwordHashed,
-      });
+      };
+      return this.usersRepository.create(newUser);
     } catch (error) {
       this.logging.error(
         `Some Internal server error has been ocurred trying create a new user : ${error}`,

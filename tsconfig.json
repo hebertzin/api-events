@@ -8,6 +8,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true
   },
-  "include": ["src", "tests", "src/domain/jwt.ts"],
+  "include": ["src", "tests"],
   "exclude": ["node_modules"]
 }

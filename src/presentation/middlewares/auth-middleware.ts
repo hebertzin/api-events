@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { JwtService } from "../../domain/";
+import { Jwt } from "../../domain/jwt";
 import { HttpStatusCode } from "../../domain/http-status";
-import { JwtServiceImpl } from "../../infraestructure/jwt/jwt";
+import { JwtServiceImpl } from "../../infraestructure/security/jwt/jwt";
 
 interface User {
   id: string;
@@ -17,13 +17,11 @@ declare global {
 }
 
 export class AuthMiddleware {
-  constructor(readonly jwtService: JwtService) {}
+  constructor(readonly jwtService: Jwt) {}
 
   async isAuthorized(req: Request, res: Response, next: NextFunction) {
     const header = req.headers["authorization"];
-
     const token = header && header.split(" ")[1];
-
     if (!token) {
       return res
         .status(HttpStatusCode.NotFound)
@@ -31,7 +29,6 @@ export class AuthMiddleware {
     }
 
     const isValidToken = this.jwtService.verify(token);
-
     if (!isValidToken) {
       return res
         .status(HttpStatusCode.Unauthorized)

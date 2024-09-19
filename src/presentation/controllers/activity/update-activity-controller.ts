@@ -3,7 +3,7 @@ import { HttpStatusCode } from "../../../domain/http-status";
 import { z } from "zod";
 import { UpdateActivity } from "../../../application/usecases/activity/update-activity-use-case";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { Activity } from "../../../domain/entity/activity-entity";
+import { Activity } from "../../../domain/entities/activity-entity";
 
 export const zodValidationActivitySchema = z.object({
   name: z.string(),
