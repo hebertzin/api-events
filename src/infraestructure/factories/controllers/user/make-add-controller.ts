@@ -3,5 +3,6 @@ import { CreateUserController } from "../../../../presentation/controllers/users
 import { makeDbAddUserUseCase } from "../../usecases/user/make-db-add-user";
 
 export const makeAddUserController = (): Controller => {
-  return new CreateUserController(makeDbAddUserUseCase());
+  const addUserController = new CreateUserController(makeDbAddUserUseCase());
+  return addUserController;
 };

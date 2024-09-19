@@ -3,7 +3,7 @@ import { Logging } from "../../../domain/logging";
 import { UserRepository } from "../../../domain/users/UsersRepository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { User } from "../../../domain/entity/user-entity";
+import { User } from "../../../domain/entities/user-entity";
 
 export interface CreateUser {
   invoke(data: User): Promise<User>;
@@ -13,7 +13,7 @@ export class CreateUserUseCase implements CreateUser {
   constructor(
     readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
-    readonly logging: Logging,
+    readonly logging: Logging
   ) {}
   async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
@@ -31,11 +31,11 @@ export class CreateUserUseCase implements CreateUser {
       });
     } catch (error) {
       this.logging.error(
-        `Some Internal server error has been ocurred trying create a new user : ${error}`,
+        `Some Internal server error has been ocurred trying create a new user : ${error}`
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }
