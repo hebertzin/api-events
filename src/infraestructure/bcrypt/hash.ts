@@ -1,7 +1,7 @@
-import { HashService } from "../../domain/hash";
+import { Hash } from "../../domain/hash";
 import bcrypt from "bcrypt";
 
-export class BcryptHashService implements HashService {
+export class BcryptHashService implements Hash {
   private readonly saltRounds = 10;
 
   async hash(password: string): Promise<string> {

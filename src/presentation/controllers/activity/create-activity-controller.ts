@@ -21,7 +21,7 @@ export class CreateActivityController implements Controller<Request> {
         msg: "Activity Created sucessfully",
         statusCode: HttpStatusCode.Created,
       };
-    } catch (error: any) {
+    } catch (error) {
       return { msg: error.message, statusCode: error.code };
     }
   }

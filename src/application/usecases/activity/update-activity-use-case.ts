@@ -11,18 +11,18 @@ export interface UpdateActivity {
 export class UpdateActivityUseCase implements UpdateActivity {
   constructor(
     readonly activityRepository: IActivityRepository,
-    readonly logging: Logging
+    readonly logging: Logging,
   ) {}
   async invoke(id: string, data: Activity): Promise<Activity | null> {
     try {
       return await this.activityRepository.update(id, data);
     } catch (error) {
       this.logging.error(
-        `Some error has been ocurred trying update an activity ${error}`
+        `Some error has been ocurred trying update an activity ${error}`,
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

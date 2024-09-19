@@ -11,18 +11,18 @@ export interface GetActivity {
 export class GetActivityUseCase implements GetActivity {
   constructor(
     readonly activityRepository: IActivityRepository,
-    readonly logging: Logging
+    readonly logging: Logging,
   ) {}
   async invoke(activity_id: string): Promise<Activity | null> {
     try {
       return await this.activityRepository.findById(activity_id);
     } catch (error) {
       this.logging.error(
-        `Some error has been ocurred trying retrieve an activity ${error}`
+        `Some error has been ocurred trying retrieve an activity ${error}`,
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError
+        HttpStatusCode.InternalServerError,
       );
     }
   }

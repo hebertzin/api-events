@@ -1,6 +1,6 @@
 export interface HttpResponse {
   statusCode: number;
-  msg: string;
+  msg?: string;
   body?: any;
 }
 
