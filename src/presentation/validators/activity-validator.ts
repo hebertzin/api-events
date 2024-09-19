@@ -5,5 +5,5 @@ import {
 } from "../middlewares/zod-validator-middleware";
 
 export const activityValidatorMiddleware = new DataValidator(
-  new ZodValidator(activityValidationSchema)
+  new ZodValidator(activityValidationSchema),
 );

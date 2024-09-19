@@ -8,5 +8,5 @@ export const activitiesManagementRoutes = Router();
 activitiesManagementRoutes.post(
   "/",
   activityValidatorMiddleware.validate(),
-  adaptRoute(makeCreateActivityController())
+  adaptRoute(makeCreateActivityController()),
 );
