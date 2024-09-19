@@ -1,5 +1,5 @@
 import { Activity, Prisma } from "@prisma/client";
-import { prisma } from "../../client/PrismaClient";
+import { prisma } from "../../orm/prisma-client";
 import { IActivityRepository } from "../../../../domain/repositories/activity-repository";
 
 export class ActivityRepositoryImpl implements IActivityRepository {
@@ -36,7 +36,7 @@ export class ActivityRepositoryImpl implements IActivityRepository {
 
   async update(
     id: string,
-    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
+    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>
   ): Promise<Activity | null> {
     const updatedActivity = await prisma.activity.update({
       where: { id },

@@ -1,4 +1,4 @@
-import { Hash } from "../../domain/hash";
+import { Hash } from "../../../domain/hash";
 import bcrypt from "bcrypt";
 
 export class BcryptHashService implements Hash {

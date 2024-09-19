@@ -1,9 +1,9 @@
 import { AuthenticationUseCase } from "../../../../application/usecases/authentication/auth-use-case";
 import { Login } from "../../../../domain/auth";
-import { BcryptHashService } from "../../../bcrypt/hash";
-import { UsersRepositoryImpl } from "../../../db/repository/users/UsersRepositoryImpl";
-import { JwtServiceImpl } from "../../../jwt/jwt";
-import { logging } from "../../../logger/logging";
+import { BcryptHashService } from "../../../security/bcrypt/hash";
+import { UsersRepositoryImpl } from "../../../database/repositories/users/users-repository";
+import { JwtServiceImpl } from "../../../security/jwt/jwt";
+import { logging } from "../../../logging/logging";
 
 export const makeAuthentication = (): Login => {
   const userRepository = new UsersRepositoryImpl();

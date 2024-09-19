@@ -1,4 +1,4 @@
-import { prisma } from "../../client/PrismaClient";
+import { prisma } from "../../orm/prisma-client";
 import { UserRepository } from "../../../../domain/users/UsersRepository";
 import { User } from "../../../../domain/entities/user-entity";
 

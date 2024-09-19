@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import { logging } from "./infraestructure/logger/logging";
+import { logging } from "./infraestructure/logging/logging";
 import { router } from "./presentation/routes/routes";
 import cors from "cors";
 
@@ -17,7 +17,7 @@ export class ExpressApp {
     this.expressApp.use(
       cors({
         origin: process.env.ORIGIN,
-      }),
+      })
     );
   }
 

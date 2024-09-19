@@ -2,8 +2,8 @@ import {
   ListActivity,
   ListActivityUseCase,
 } from "../../../../application/usecases/activity/list-activity-use-case";
-import { ActivityRepositoryImpl } from "../../../db/repository/activity/ActivitRepositoryImpl";
-import { logging } from "../../../logger/logging";
+import { ActivityRepositoryImpl } from "../../../database/repositories/activity/activity-repository";
+import { logging } from "../../../logging/logging";
 
 export const makeDbListActivity = (): ListActivity => {
   const activityRepository = new ActivityRepositoryImpl();
