@@ -12,11 +12,11 @@ export const zodValidationActivitySchema = z.object({
 });
 
 export class CreateActivityController implements Controller<Request> {
-  constructor(readonly activityService: CreateActivity) {}
+  constructor(readonly addActivity: CreateActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     try {
       const data = req.body as Activity;
-      await this.activityService.invoke(data);
+      await this.addActivity.invoke(data);
       return {
         msg: "Activity Created sucessfully",
         statusCode: HttpStatusCode.Created,
