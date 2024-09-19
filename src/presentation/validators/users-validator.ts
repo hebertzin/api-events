@@ -5,5 +5,5 @@ import {
 } from "../middlewares/zod-validator-middleware";
 
 export const usersValidatorMiddleware = new DataValidator(
-  new ZodValidator(zodValidationUserSchema)
+  new ZodValidator(zodValidationUserSchema),
 );

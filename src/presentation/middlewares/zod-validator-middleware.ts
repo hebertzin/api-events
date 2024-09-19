@@ -26,7 +26,6 @@ export class DataValidator<T> {
     return (req: Request, res: Response, next: NextFunction) => {
       try {
         this.validator.validate(req.body);
-        console.log("passou pelo middleware");
         next();
       } catch (error) {
         if (error instanceof ZodError) {

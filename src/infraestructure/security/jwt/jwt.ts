@@ -1,7 +1,7 @@
 import { Jwt } from "../../../domain/jwt";
 import jwt from "jsonwebtoken";
 
-export class JwtServiceImpl implements Jwt {
+export class JwtManager implements Jwt {
   private readonly secretKey = process.env.SECRET as string;
 
   sign(payload: string | object | Buffer, options?: jwt.SignOptions): string {
