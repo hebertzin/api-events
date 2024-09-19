@@ -11,22 +11,25 @@ export class AuthenticationUseCase implements Login {
     readonly usersRepository: UserRepository,
     readonly jwtService: Jwt,
     readonly bcrypt: Hash,
-    readonly logging: Logging,
+    readonly logging: Logging
   ) {}
   async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (!existentUser) {
-      throw new NotFound("User not found", HttpStatusCode.NotFound);
+      throw new NotFound(
+        "User does not exist, create an account",
+        HttpStatusCode.NotFound
+      );
     }
     const isValidPassword = await this.bcrypt.compare(
       user.password,
-      existentUser.password,
+      existentUser.password
     );
     if (!isValidPassword) {
       this.logging.warn(`User credential are invalid ${user.email}`);
       throw new InvalidCredentials(
         "Invalid credentials",
-        HttpStatusCode.Unauthorized,
+        HttpStatusCode.Unauthorized
       );
     }
     try {
@@ -34,11 +37,11 @@ export class AuthenticationUseCase implements Login {
       return { token };
     } catch (error) {
       this.logging.error(
-        `Some internal server error has been ocurred trying log user : ${error}`,
+        `Some internal server error has been ocurred trying log user : ${error}`
       );
       throw new AppError(
         "Internal server error",
-        HttpStatusCode.InternalServerError,
+        HttpStatusCode.InternalServerError
       );
     }
   }
