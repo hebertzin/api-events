@@ -1,15 +1,8 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { z } from "zod";
 import { CreateActivity } from "../../../application/usecases/activity/create-activity-use-case";
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { Activity } from "../../../domain/entities/activity-entity";
-export const zodValidationActivitySchema = z.object({
-  name: z.string(),
-  description: z.string(),
-  userID: z.string(),
-  location: z.string(),
-});
 
 export class CreateActivityController implements Controller<Request> {
   constructor(readonly addActivity: CreateActivity) {}
