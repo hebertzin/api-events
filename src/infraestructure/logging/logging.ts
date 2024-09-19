@@ -13,7 +13,7 @@ class LoggerService implements Logging {
         format.colorize(),
         format.printf(({ level, message, timestamp }) => {
           return `${timestamp} ${level}: ${message}`;
-        })
+        }),
       ),
       transports: [
         new transports.Console(),

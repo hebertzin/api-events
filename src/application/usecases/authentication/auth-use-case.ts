@@ -2,7 +2,7 @@ import { Hash } from "../../../domain/hash";
 import { Jwt } from "../../../domain/jwt";
 import { Logging } from "../../../domain/logging";
 import { Authentication, Login, Token } from "../../../domain/auth";
-import { UserRepository } from "../../../domain/users/UsersRepository";
+import { UserRepository } from "../../../domain/users/users-repository";
 import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 
