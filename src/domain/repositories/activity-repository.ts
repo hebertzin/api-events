@@ -6,7 +6,7 @@ export interface IActivityRepository {
   findMany(
     user_id: string,
     page: number,
-    limit: number
+    limit: number,
   ): Promise<Activity[] | null>;
   delete(id: string): Promise<void>;
   update(id: string, data: Activity): Promise<Activity | null>;

@@ -28,7 +28,7 @@ export class ActivityRepositoryImpl implements IActivityRepository {
   async findMany(
     user_id: string,
     page: number,
-    limit: number
+    limit: number,
   ): Promise<Activity[] | null> {
     const skip = (page - 1) * limit;
     const activities = await prisma.activity.findMany({
@@ -43,7 +43,7 @@ export class ActivityRepositoryImpl implements IActivityRepository {
 
   async update(
     id: string,
-    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>
+    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
   ): Promise<Activity | null> {
     const updatedActivity = await prisma.activity.update({
       where: { id },
