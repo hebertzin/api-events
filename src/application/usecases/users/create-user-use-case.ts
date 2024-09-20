@@ -1,6 +1,6 @@
 import { Hash } from "../../../domain/hash";
 import { Logging } from "../../../domain/logging";
-import { UserRepository } from "../../../domain/users/users-repository";
+import { UserRepository } from "../../../domain/repositories/users-repository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { User } from "../../../domain/entities/user-entity";

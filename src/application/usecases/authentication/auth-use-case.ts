@@ -2,7 +2,7 @@ import { Hash } from "../../../domain/hash";
 import { Jwt } from "../../../domain/jwt";
 import { Logging } from "../../../domain/logging";
 import { Authentication, Login, Token } from "../../../domain/auth";
-import { UserRepository } from "../../../domain/users/users-repository";
+import { UserRepository } from "../../../domain/repositories/users-repository";
 import { AppError, InvalidCredentials, NotFound } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
 
@@ -16,7 +16,10 @@ export class AuthenticationUseCase implements Login {
   async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (!existentUser) {
-      throw new NotFound("User not found", HttpStatusCode.NotFound);
+      throw new NotFound(
+        "User does not exist, create an account",
+        HttpStatusCode.NotFound,
+      );
     }
     const isValidPassword = await this.bcrypt.compare(
       user.password,

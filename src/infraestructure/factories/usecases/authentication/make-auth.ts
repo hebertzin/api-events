@@ -2,12 +2,12 @@ import { AuthenticationUseCase } from "../../../../application/usecases/authenti
 import { Login } from "../../../../domain/auth";
 import { BcryptHashService } from "../../../security/bcrypt/hash";
 import { UsersRepositoryImpl } from "../../../database/repositories/users/users-repository";
-import { JwtServiceImpl } from "../../../security/jwt/jwt";
+import { JwtManager } from "../../../security/jwt/jwt";
 import { logging } from "../../../logging/logging";
 
 export const makeAuthentication = (): Login => {
   const userRepository = new UsersRepositoryImpl();
-  const jwt = new JwtServiceImpl();
+  const jwt = new JwtManager();
   const hash = new BcryptHashService();
   return new AuthenticationUseCase(userRepository, jwt, hash, logging);
 };
