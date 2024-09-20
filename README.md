@@ -1,8 +1,8 @@
-## Alvadorn-Backend
+## Syncro-Backend
 
 ## Overview
 
-This is a technical test project for a junior developer position where I learned a lot about project patterns and software architecture
+Syncro is a task management application that combines simplicity and efficiency. With an intuitive interface, it allows users to easily create, organize and monitor tasks. Through personalized filters and detailed reports, Syncro provides a clear view of progress, helping teams and individuals stay focused and productive. Ideal for those looking for a practical and collaborative solution, Syncro transforms the way we manage our daily activities.
 
 ## **Techs**
 
