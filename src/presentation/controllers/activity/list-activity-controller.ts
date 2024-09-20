@@ -7,12 +7,18 @@ export class ListActivityController implements Controller<Request> {
   constructor(readonly listActivity: ListActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 20;
     try {
-      const activities = await this.listActivity.invoke(user_id);
+      const activities = await this.listActivity.invoke(user_id, page, limit);
       return {
         msg: "Get a list of activities sucessfully",
         statusCode: HttpStatusCode.Ok,
-        body: activities,
+        body: {
+          page,
+          limit,
+          activities,
+        },
       };
     } catch (error) {
       return { msg: error.message, statusCode: error.code };
