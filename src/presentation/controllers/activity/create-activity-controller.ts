@@ -4,7 +4,7 @@ import { CreateActivity } from "../../../application/usecases/activity/create-ac
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { Activity } from "../../../domain/entities/activity-entity";
 
-export class CreateActivityController implements Controller<Request> {
+export class CreateActivityController implements Controller {
   constructor(readonly addActivity: CreateActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     try {

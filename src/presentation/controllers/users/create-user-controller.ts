@@ -4,7 +4,7 @@ import { Controller, HttpResponse } from "../../../domain/controller";
 import { CreateUser } from "../../../application/usecases/users/create-user-use-case";
 import { User } from "../../../domain/entities/user-entity";
 
-export class CreateUserController implements Controller<Request> {
+export class CreateUserController implements Controller {
   constructor(readonly createUserUseCase: CreateUser) {}
   async handle(req: Request): Promise<HttpResponse> {
     try {

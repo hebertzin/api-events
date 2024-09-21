@@ -4,7 +4,7 @@ import { Controller, HttpResponse } from "../../../domain/controller";
 import { Login } from "../../../domain/auth";
 import { User } from "../../../domain/entities/user-entity";
 
-export class AuthenticationController implements Controller<Request> {
+export class AuthenticationController implements Controller {
   constructor(readonly authenticationUseCase: Login) {}
   async handle(req: Request): Promise<HttpResponse> {
     const user = req.body as User;

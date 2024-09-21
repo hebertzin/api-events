@@ -9,10 +9,10 @@ export const activitiesManagementRoutes = Router();
 activitiesManagementRoutes.post(
   "/",
   activityValidatorMiddleware.validate(),
-  adaptRoute(makeCreateActivityController()),
+  adaptRoute(makeCreateActivityController())
 );
 
 activitiesManagementRoutes.get(
   "/:user_id",
-  adaptRoute(makeListActivityController()),
+  adaptRoute(makeListActivityController())
 );

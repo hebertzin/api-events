@@ -6,5 +6,5 @@ import { activitiesManagementRoutes } from "./activity/activty-routes";
 export const router = Router();
 
 router.use("/users", userManagementRoutes);
-router.use("/activity", activitiesManagementRoutes);
+router.use("/activities", activitiesManagementRoutes);
 router.use("/authentication", authenticationManagementRoutes);

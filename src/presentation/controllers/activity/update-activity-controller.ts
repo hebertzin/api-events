@@ -4,7 +4,7 @@ import { UpdateActivity } from "../../../application/usecases/activity/update-ac
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { Activity } from "../../../domain/entities/activity-entity";
 
-export class UpdateActivityController implements Controller<Request> {
+export class UpdateActivityController implements Controller {
   constructor(readonly activityService: UpdateActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;

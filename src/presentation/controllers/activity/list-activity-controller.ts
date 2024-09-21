@@ -3,7 +3,7 @@ import { HttpStatusCode } from "../../../domain/http-status";
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { ListActivity } from "../../../application/usecases/activity/list-activity-use-case";
 
-export class ListActivityController implements Controller<Request> {
+export class ListActivityController implements Controller {
   constructor(readonly listActivity: ListActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
