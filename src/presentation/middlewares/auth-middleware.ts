@@ -8,7 +8,7 @@ import { logging } from "../../infra/logging/logging";
 export class AuthMiddleware {
   constructor(
     readonly jwtService: Jwt,
-    readonly logging: Logging
+    readonly logging: Logging,
   ) {}
   async isAuthorized(req: Request, res: Response, next: NextFunction) {
     const header = req.headers["authorization"];

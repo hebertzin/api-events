@@ -8,5 +8,5 @@ export const authenticationManagementRoutes = Router();
 authenticationManagementRoutes.post(
   "/",
   authenticationValidatorMiddleware.validate(),
-  adaptRoute(makeAuthenticationController())
+  adaptRoute(makeAuthenticationController()),
 );
