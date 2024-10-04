@@ -7,4 +7,4 @@ export const router = Router();
 
 router.use("/users", userManagementRoutes);
 router.use("/activities", activitiesManagementRoutes);
-router.use("/authentication", authenticationManagementRoutes);
+router.use("/authentication/sign-in", authenticationManagementRoutes);
