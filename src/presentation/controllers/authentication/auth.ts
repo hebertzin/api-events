@@ -2,10 +2,10 @@ import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { Controller, HttpResponse } from "../../../domain/controller";
 import { Login } from "../../../domain/auth";
-import { User } from "../../../domain/entities/user-entity";
+import { User } from "../../../domain/entities/user";
 
 export class AuthenticationController implements Controller<Request> {
-  constructor(readonly authenticationUseCase: Login) {}
+  constructor(readonly authenticationUseCase: Login) { }
   async handle(req: Request): Promise<HttpResponse> {
     const user = req.body as User;
     try {

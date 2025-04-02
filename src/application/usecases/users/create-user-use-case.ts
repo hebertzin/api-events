@@ -3,7 +3,7 @@ import { Logging } from "../../../domain/logging";
 import { UserRepository } from "../../../domain/repositories/users-repository";
 import { AppError, UserAlreadyExist } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
-import { User } from "../../../domain/entities/user-entity";
+import { User } from "../../../domain/entities/user";
 
 export interface CreateUser {
   invoke(data: User): Promise<User>;
@@ -14,7 +14,7 @@ export class CreateUserUseCase implements CreateUser {
     readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
     readonly logging: Logging,
-  ) {}
+  ) { }
   async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (existentUser) {
