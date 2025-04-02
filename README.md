@@ -1,8 +1,8 @@
-## Syncro-Backend
+## e-church
 
 ## Overview
 
-Syncro is a task management application that combines simplicity and efficiency. With an intuitive interface, it allows users to easily create, organize and monitor tasks. Through personalized filters and detailed reports, Syncro provides a clear view of progress, helping teams and individuals stay focused and productive. Ideal for those looking for a practical and collaborative solution, Syncro transforms the way we manage our daily activities.
+church is a task management application that combines simplicity and efficiency. With an intuitive interface, it allows users to easily create, organize and monitor tasks. Through personalized filters and detailed reports, Syncro provides a clear view of progress, helping teams and individuals stay focused and productive. Ideal for those looking for a practical and collaborative solution, Syncro transforms the way we manage our daily activities.
 
 ## **Techs**
 
@@ -35,10 +35,10 @@ Syncro is a task management application that combines simplicity and efficiency.
 
 - **POST** `/api/v1/authentication/user`: Auth a user
 - **POST** `/api/v1//user`: Create a user
-- **POST** `/api/v1/activity/` : Create an activity
-- **GET** `/api/v1/activity/:id`: Returns data from an activity
-- **GET** `/api/v1/activity/:userId/all` : Returns all activities from a user
-- **DELETE** `/api/v1/activity/:id` : Deletes an activity
+- **POST** `/api/v1/events/` : Create an activity
+- **GET** `/api/v1/events/:id`: Returns data from an activity
+- **GET** `/api/v1/events/:userId/all` : Returns all activities from a user
+- **DELETE** `/api/v1/envents/:id` : Deletes an activity
 
 ## How to run this project
 
