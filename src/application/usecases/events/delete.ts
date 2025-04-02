@@ -1,4 +1,3 @@
-
 import { Logging } from "../../../domain/logging";
 import { AppError } from "../../errors/errors";
 import { HttpStatusCode } from "../../../domain/http-status";
@@ -12,7 +11,7 @@ export class DeleteEventUseCase implements DeleteActivity {
   constructor(
     readonly deleteEventRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(activity_id: string): Promise<void> {
     try {
       await this.deleteEventRepository.delete(activity_id);

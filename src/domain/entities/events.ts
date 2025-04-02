@@ -1,5 +1,5 @@
 export type Event = {
-  name: string
+  name: string;
   description: string;
   location: string;
   userID: string;

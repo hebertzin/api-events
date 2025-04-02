@@ -4,7 +4,7 @@ import { Controller, HttpResponse } from "../../../domain/controller";
 import { DeleteActivity } from "../../../application/usecases/events/delete";
 
 export class DeleteEventController implements Controller<Request> {
-  constructor(readonly deleteEvent: DeleteActivity) { }
+  constructor(readonly deleteEvent: DeleteActivity) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {

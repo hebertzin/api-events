@@ -12,7 +12,7 @@ export class GetEventUseCase implements GetEvent {
   constructor(
     readonly eventsRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(event_id: string): Promise<Event | null> {
     try {
       return await this.eventsRepository.findById(event_id);

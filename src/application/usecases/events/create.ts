@@ -12,7 +12,7 @@ export class CreateEventUseCase implements CreateEvent {
   constructor(
     readonly eventsRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(data: Event): Promise<Event> {
     try {
       this.logging.info("New event was created sucessfully");

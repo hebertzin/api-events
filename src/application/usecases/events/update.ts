@@ -12,7 +12,7 @@ export class UpdateEventUseCase implements UpdateEvent {
   constructor(
     readonly eventRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(id: string, data: Event): Promise<Event | null> {
     try {
       return await this.eventRepository.update(id, data);

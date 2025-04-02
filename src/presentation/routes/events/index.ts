@@ -12,7 +12,4 @@ eventsManagementRoutes.post(
   adaptRoute(makeCreateEventController()),
 );
 
-eventsManagementRoutes.get(
-  "/:user_id",
-  adaptRoute(makeListEventsController()),
-);
+eventsManagementRoutes.get("/:user_id", adaptRoute(makeListEventsController()));
