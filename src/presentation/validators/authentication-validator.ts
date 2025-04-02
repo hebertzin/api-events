@@ -1,7 +1,7 @@
 import {
   DataValidator,
   ZodValidator,
-} from "../middlewares/zod-validator-middleware";
+} from "../middlewares/validator";
 import { authenticationValidationSchema } from "./schemas/authentication";
 
 export const authenticationValidatorMiddleware = new DataValidator(
