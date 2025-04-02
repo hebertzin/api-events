@@ -1,5 +1,5 @@
 import { Controller } from "../../../../domain/controller";
-import { CreateUserController } from "../../../../presentation/controllers/users/create-user-controller";
+import { CreateUserController } from "../../../../presentation/controllers/users/create";
 import { makeDbAddUserUseCase } from "../../usecases/user/make-db-add-user";
 
 export const makeAddUserController = (): Controller => {

@@ -1,16 +1,16 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { DeleteActivity } from "../../../application/usecases/activity/delete-activity-use-case";
+import { DeleteActivity } from "../../../application/usecases/events/delete";
 
-export class DeleteActivityController implements Controller<Request> {
-  constructor(readonly deleteActivity: DeleteActivity) {}
+export class DeleteEventController implements Controller<Request> {
+  constructor(readonly deleteEvent: DeleteActivity) { }
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {
-      await this.deleteActivity.invoke(id);
+      await this.deleteEvent.invoke(id);
       return {
-        msg: "Activity deleted sucessfully",
+        msg: "Event deleted sucessfully",
         statusCode: HttpStatusCode.Ok,
       };
     } catch (error) {

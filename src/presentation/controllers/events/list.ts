@@ -1,23 +1,23 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { ListActivity } from "../../../application/usecases/activity/list-activity-use-case";
+import { ListEvents } from "../../../application/usecases/events/list";
 
-export class ListActivityController implements Controller<Request> {
-  constructor(readonly listActivity: ListActivity) {}
+export class ListEventsController implements Controller<Request> {
+  constructor(readonly listEvents: ListEvents) { }
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 20;
     try {
-      const activities = await this.listActivity.invoke(user_id, page, limit);
+      const events = await this.listEvents.invoke(user_id, page, limit);
       return {
-        msg: "Get a list of activities sucessfully",
+        msg: "Get a list of events sucessfully",
         statusCode: HttpStatusCode.Ok,
         body: {
           page,
           limit,
-          activities,
+          events,
         },
       };
     } catch (error) {

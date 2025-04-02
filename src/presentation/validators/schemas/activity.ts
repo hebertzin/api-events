@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const activityValidationSchema = z.object({
+export const eventsValidationSchema = z.object({
   name: z
     .string({
       message: "Name must be a string",

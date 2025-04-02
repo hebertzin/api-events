@@ -1,18 +1,19 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
+import { UpdateEvent } from "../../../application/usecases/events/update";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { GetActivity } from "../../../application/usecases/activity/get-activity-use-case";
+import { Event } from "../../../domain/entities/events";
 
-export class GetActivityController implements Controller<Request> {
-  constructor(readonly listActivity: GetActivity) {}
+export class UpdateEventController implements Controller<Request> {
+  constructor(readonly updateEvent: UpdateEvent) { }
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {
-      const activity = await this.listActivity.invoke(id);
+      const data = req.body as Event;
+      await this.updateEvent.invoke(id, data);
       return {
-        msg: "Get activity sucessfully",
+        msg: "Event updated sucessfully",
         statusCode: HttpStatusCode.Ok,
-        body: activity,
       };
     } catch (error) {
       return { msg: error.message, statusCode: error.code };

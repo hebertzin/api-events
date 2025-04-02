@@ -1,8 +1,8 @@
 import { Activity, Prisma } from "@prisma/client";
-import { prisma } from "../../orm/prisma-client";
-import { IActivityRepository } from "../../../../domain/repositories/activity-repository";
+import { prisma } from "../../orm/client";
+import { IEventsRepository } from "../../../../domain/repositories/events";
 
-export class ActivityRepositoryImpl implements IActivityRepository {
+export class EventsRepositoryImpl implements IEventsRepository {
   async create(data: Prisma.ActivityUncheckedCreateInput): Promise<Activity> {
     const activity = await prisma.activity.create({
       data: {
