@@ -1,4 +1,4 @@
-## e-church
+## Events API
 
 ## Overview
 
@@ -43,7 +43,7 @@ events api is a task management application that combines simplicity and efficie
 ## How to run this project
 
 - Make sure you have the **node**, **docker** installed
-- Clone this repository `git clone https://github.com/hebertsanto/Alvadorn-Backend.git`
+- Clone this repository `git clone https://github.com/hebertsanto/api-events`
 
 - Navigate to the project and run the following command `npm install`
 - Create a `.env` file and create environment variables.
