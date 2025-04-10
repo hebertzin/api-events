@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  events:
+    image: bitnami/postgresql:latest
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 8080:5432
+    environment:
+      - POSTGRESQL_USERNAME={POSTGRESQL_USERNAME}
+      - POSTGRESQL_PASSWORD={POSTGRESQL_PASSWORD}
+      - POSTGRESQL_DATABASE={POSTGRESQL_DATABASE}
+volumes:
+  pgdata:
