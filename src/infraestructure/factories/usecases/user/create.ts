@@ -1,7 +1,7 @@
 import {
   CreateUser,
   CreateUserUseCase,
-} from "../../../../application/usecases/users/create-user-use-case";
+} from "../../../../application/usecases/users/create";
 import { BcryptHashService } from "../../../security/bcrypt/hash";
 import { UsersRepositoryImpl } from "../../../database/repositories/users/repository";
 import { logging } from "../../../logging/logging";

@@ -1,11 +1,11 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/http-status";
 import { Controller, HttpResponse } from "../../../domain/controller";
-import { CreateUser } from "../../../application/usecases/users/create-user-use-case";
+import { CreateUser } from "../../../application/usecases/users/create";
 import { User } from "../../../domain/entities/user";
 
 export class CreateUserController implements Controller<Request> {
-  constructor(readonly createUserUseCase: CreateUser) {}
+  constructor(readonly createUserUseCase: CreateUser) { }
   async handle(req: Request): Promise<HttpResponse> {
     try {
       const user = req.body as User;
