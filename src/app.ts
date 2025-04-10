@@ -1,5 +1,5 @@
 import express, { Express } from "express";
-import { logging } from "./infraestructure/logging/logging";
+import { logging } from "./infra/logging/logging";
 import { router } from "./presentation/routes/routes";
 import cors from "cors";
 

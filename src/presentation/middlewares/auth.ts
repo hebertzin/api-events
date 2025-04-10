@@ -1,15 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import { Jwt } from "../../domain/jwt";
 import { HttpStatusCode } from "../../domain/http-status";
-import { JwtManager } from "../../infraestructure/security/jwt/jwt";
+import { JwtManager } from "../../infra/security/jwt/jwt";
 import { Logging } from "../../domain/logging";
-import { logging } from "../../infraestructure/logging/logging";
+import { logging } from "../../infra/logging/logging";
 
 export class AuthMiddleware {
   constructor(
     readonly jwtService: Jwt,
     readonly logging: Logging,
-  ) {}
+  ) { }
   async isAuthorized(req: Request, res: Response, next: NextFunction) {
     const header = req.headers["authorization"];
     const token = header && header.split(" ")[1];
