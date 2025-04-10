@@ -18,10 +18,10 @@ model User {
   name       String
   email      String     @unique
   password   String
-  activities Activity[]
+  events Events[]
 }
 
-model Activity {
+model Events {
   id          String   @unique @default(uuid())
   name        String
   description String
