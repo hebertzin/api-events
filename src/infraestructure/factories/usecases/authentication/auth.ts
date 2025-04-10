@@ -1,7 +1,7 @@
-import { AuthenticationUseCase } from "../../../../application/usecases/authentication/auth-use-case";
+import { AuthenticationUseCase } from "../../../../application/usecases/authentication/AuthUseCase";
 import { Login } from "../../../../domain/auth";
 import { BcryptHashService } from "../../../security/bcrypt/hash";
-import { UsersRepositoryImpl } from "../../../database/repositories/users/users-repository";
+import { UsersRepositoryImpl } from "../../../database/repositories/users/repository";
 import { JwtManager } from "../../../security/jwt/jwt";
 import { logging } from "../../../logging/logging";
 

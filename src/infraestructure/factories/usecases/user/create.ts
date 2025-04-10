@@ -3,7 +3,7 @@ import {
   CreateUserUseCase,
 } from "../../../../application/usecases/users/create-user-use-case";
 import { BcryptHashService } from "../../../security/bcrypt/hash";
-import { UsersRepositoryImpl } from "../../../database/repositories/users/users-repository";
+import { UsersRepositoryImpl } from "../../../database/repositories/users/repository";
 import { logging } from "../../../logging/logging";
 
 export const makeDbAddUserUseCase = (): CreateUser => {

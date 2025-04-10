@@ -1,37 +1,37 @@
-import { Activity, Prisma } from "@prisma/client";
 import { prisma } from "../../orm/client";
 import { IEventsRepository } from "../../../../domain/repositories/events";
+import { Events, Prisma } from "@prisma/client";
 
 export class EventsRepositoryImpl implements IEventsRepository {
-  async create(data: Prisma.ActivityUncheckedCreateInput): Promise<Activity> {
-    const activity = await prisma.activity.create({
+  async create(data: Prisma.EventsUncheckedCreateInput): Promise<Events> {
+    const events = await prisma.events.create({
       data: {
         ...data,
       },
     });
-    return activity;
+    return events;
   }
 
   async delete(id: string): Promise<void> {
-    await prisma.activity.delete({
+    await prisma.events.delete({
       where: {
         id,
       },
     });
   }
 
-  async findById(id: string): Promise<Activity | null> {
-    const activity = await prisma.activity.findUnique({ where: { id } });
-    return activity;
+  async findById(id: string): Promise<Events | null> {
+    const events = await prisma.events.findUnique({ where: { id } });
+    return events;
   }
 
   async findMany(
     user_id: string,
     page: number,
     limit: number,
-  ): Promise<Activity[] | null> {
+  ): Promise<Events[] | null> {
     const skip = (page - 1) * limit;
-    const activities = await prisma.activity.findMany({
+    const activities = await prisma.events.findMany({
       where: {
         userID: user_id,
       },
@@ -43,12 +43,12 @@ export class EventsRepositoryImpl implements IEventsRepository {
 
   async update(
     id: string,
-    data: Partial<Omit<Activity, "createdAt" | "updatedAt">>,
-  ): Promise<Activity | null> {
-    const updatedActivity = await prisma.activity.update({
+    data: Partial<Omit<Events, "createdAt" | "updatedAt">>,
+  ): Promise<Events | null> {
+    const updatedevents = await prisma.events.update({
       where: { id },
       data: { ...data },
     });
-    return updatedActivity;
+    return updatedevents;
   }
 }

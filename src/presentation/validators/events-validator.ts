@@ -1,8 +1,5 @@
 import { eventsValidationSchema } from "./schemas/events";
-import {
-  DataValidator,
-  ZodValidator,
-} from "../middlewares/validator";
+import { DataValidator, ZodValidator } from "../middlewares/validator";
 
 export const eventsValidatorMiddleware = new DataValidator(
   new ZodValidator(eventsValidationSchema),
