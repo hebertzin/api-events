@@ -2,7 +2,7 @@
 
 ## Overview
 
-church is a task management application that combines simplicity and efficiency. With an intuitive interface, it allows users to easily create, organize and monitor tasks. Through personalized filters and detailed reports, Syncro provides a clear view of progress, helping teams and individuals stay focused and productive. Ideal for those looking for a practical and collaborative solution, Syncro transforms the way we manage our daily activities.
+events api is a task management application that combines simplicity and efficiency. With an intuitive interface, it allows users to easily create, organize and monitor events. Through personalized filters and detailed reports, Events provides a clear view of progress, helping teams and individuals stay focused and productive. Ideal for those looking for a practical and collaborative solution, Syncro transforms the way we manage our daily activities.
 
 ## **Techs**
 
@@ -24,21 +24,21 @@ church is a task management application that combines simplicity and efficiency.
 
 ## **Features**
 
-- [x] It is possible to create an activity
-- [x] Is it possible to delete an activity
-- [x] Is it possible to update an activity
-- [x] Is it possible to retrieve a list of activities
-- [x] Is it possible to recover an activityall files
+- [x] It is possible to create an events
+- [x] Is it possible to delete an event
+- [x] Is it possible to update an event
+- [x] Is it possible to retrieve a list of events
+- [x] Is it possible to recover an eventsall files
 - [x] A user is able to authenticate to the system by generating a token
 
 ## **Endpoints**
 
-- **POST** `/api/v1/authentication/user`: Auth a user
+- **POST** `/api/v1/authentication`: Auth a user
 - **POST** `/api/v1//user`: Create a user
-- **POST** `/api/v1/events/` : Create an activity
-- **GET** `/api/v1/events/:id`: Returns data from an activity
-- **GET** `/api/v1/events/:userId/all` : Returns all activities from a user
-- **DELETE** `/api/v1/envents/:id` : Deletes an activity
+- **POST** `/api/v1/events/` : Create an events
+- **GET** `/api/v1/events/:id`: Returns data from an events
+- **GET** `/api/v1/events/:id/all` : Returns all events from a user
+- **DELETE** `/api/v1/envents/:id` : Deletes an events
 
 ## How to run this project
 
