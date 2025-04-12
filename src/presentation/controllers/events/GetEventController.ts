@@ -4,7 +4,7 @@ import { Controller, HttpResponse } from "../../../domain/Controller";
 import { GetEvent } from "../../../application/usecases/events/GetEventUseCase";
 
 export class GetEventController implements Controller<Request> {
-  constructor(readonly getEvent: GetEvent) { }
+  constructor(readonly getEvent: GetEvent) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {

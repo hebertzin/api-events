@@ -11,7 +11,7 @@ export class DeleteEventUseCase implements DeleteActivity {
   constructor(
     readonly deleteEventRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(activity_id: string): Promise<void> {
     try {
       await this.deleteEventRepository.delete(activity_id);

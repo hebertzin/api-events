@@ -16,7 +16,7 @@ export class ListEventsUseCase implements ListEvents {
   constructor(
     readonly activityRepository: IEventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
 
   async invoke(
     user_id: string,

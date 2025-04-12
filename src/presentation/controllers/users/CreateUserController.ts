@@ -5,7 +5,7 @@ import { CreateUser } from "../../../application/usecases/users/CreateUserUseCas
 import { User } from "../../../domain/entity/Users";
 
 export class CreateUserController implements Controller<Request> {
-  constructor(readonly createUserUseCase: CreateUser) { }
+  constructor(readonly createUserUseCase: CreateUser) {}
   async handle(req: Request): Promise<HttpResponse> {
     try {
       const user = req.body as User;

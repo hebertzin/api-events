@@ -5,7 +5,7 @@ import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Event } from "../../../domain/entity/Events";
 
 export class CreateEventController implements Controller<Request> {
-  constructor(readonly createEvent: CreateEvent) { }
+  constructor(readonly createEvent: CreateEvent) {}
   async handle(req: Request): Promise<HttpResponse> {
     try {
       const data = req.body as Event;

@@ -4,7 +4,7 @@ import { Controller, HttpResponse } from "../../../domain/Controller";
 import { ListEvents } from "../../../application/usecases/events/ListEventsUseCase";
 
 export class ListEventsController implements Controller<Request> {
-  constructor(readonly listEvents: ListEvents) { }
+  constructor(readonly listEvents: ListEvents) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { user_id } = req.params;
     const page = Number(req.query.page) || 1;

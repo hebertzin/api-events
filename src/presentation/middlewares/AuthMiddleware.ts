@@ -9,7 +9,7 @@ export class AuthMiddleware {
   constructor(
     readonly jwtService: Jwt,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async isAuthorized(req: Request, res: Response, next: NextFunction) {
     const header = req.headers["authorization"];
     const token = header && header.split(" ")[1];

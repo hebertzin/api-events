@@ -14,7 +14,7 @@ export class CreateUserUseCase implements CreateUser {
     readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (existentUser) {

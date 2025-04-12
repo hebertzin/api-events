@@ -5,7 +5,7 @@ import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Event } from "../../../domain/entity/Events";
 
 export class UpdateEventController implements Controller<Request> {
-  constructor(readonly updateEvent: UpdateEvent) { }
+  constructor(readonly updateEvent: UpdateEvent) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {

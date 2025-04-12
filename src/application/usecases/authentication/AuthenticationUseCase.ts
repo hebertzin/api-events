@@ -12,7 +12,7 @@ export class AuthenticationUseCase implements Login {
     readonly jwtService: Jwt,
     readonly bcrypt: Hash,
     readonly logging: Logging,
-  ) { }
+  ) {}
   async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (!existentUser) {
