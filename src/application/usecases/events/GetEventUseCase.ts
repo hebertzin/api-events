@@ -1,25 +1,26 @@
 import { Event } from "../../../domain/entity/Events";
 import { AppError } from "../../errors/Errors";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
-import { IEventsRepository } from "../../../domain/repository/events";
+import { EventsRepository } from "../../../domain/repository/EventsRepository";
 import { Logging } from "../../../domain/Logging";
-
-export interface GetEvent {
-  invoke(event_id: string): Promise<Event | null>;
-}
+import { GetEvent } from "../../../domain/usecases/GetEventUseCase";
 
 export class GetEventUseCase implements GetEvent {
   constructor(
-    readonly eventsRepository: IEventsRepository,
+    readonly eventsRepository: EventsRepository,
     readonly logging: Logging,
   ) {}
-  async invoke(event_id: string): Promise<Event | null> {
+
+  public async invoke(event_id: string): Promise<Event | null> {
     try {
+      this.logging.warn(`[GetEventUseCase] Get event with id ${event_id}`);
+
       return await this.eventsRepository.findById(event_id);
     } catch (error) {
       this.logging.error(
         `Some error has been ocurred trying retrieve an Event ${error}`,
       );
+
       throw new AppError(
         "Internal server error",
         HttpStatusCode.InternalServerError,

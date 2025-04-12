@@ -1,24 +1,27 @@
 import { Logging } from "../../../domain/Logging";
 import { AppError } from "../../errors/Errors";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
-import { IEventsRepository } from "../../../domain/repository/events";
+import { EventsRepository } from "../../../domain/repository/EventsRepository";
+import { DeleteEvent } from "../../../domain/usecases/DeleteEventUseCase";
 
-export interface DeleteActivity {
-  invoke(activity_id: string): Promise<void>;
-}
-
-export class DeleteEventUseCase implements DeleteActivity {
+export class DeleteEventUseCase implements DeleteEvent {
   constructor(
-    readonly deleteEventRepository: IEventsRepository,
+    readonly deleteEventRepository: EventsRepository,
     readonly logging: Logging,
   ) {}
-  async invoke(activity_id: string): Promise<void> {
+
+  public async invoke(event_id: string): Promise<void> {
     try {
-      await this.deleteEventRepository.delete(activity_id);
+      this.logging.warn(
+        `[DeleteEventUseCase] deleting event with id ${event_id}`,
+      );
+
+      await this.deleteEventRepository.delete(event_id);
     } catch (error) {
       this.logging.error(
         `Some error has been ocurred trying delete a new event ${error}`,
       );
+
       throw new AppError(
         "Internal server error",
         HttpStatusCode.InternalServerError,

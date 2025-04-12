@@ -1,6 +1,6 @@
 import { Hash } from "../../../domain/Hash";
 import { Logging } from "../../../domain/Logging";
-import { UserRepository } from "../../../domain/repository/users-repository";
+import { UserRepository } from "../../../domain/repository/UsersRepository";
 import { AppError, UserAlreadyExist } from "../../errors/Errors";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
 import { User } from "../../../domain/entity/Users";
@@ -14,8 +14,8 @@ export class CreateUserUseCase implements CreateUser {
     readonly usersRepository: UserRepository,
     readonly bcrypt: Hash,
     readonly logging: Logging,
-  ) {}
-  async invoke(user: User): Promise<User> {
+  ) { }
+  public async invoke(user: User): Promise<User> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
     if (existentUser) {
       this.logging.warn(`User ${existentUser.email} already exist in database`);

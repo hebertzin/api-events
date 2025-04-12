@@ -2,24 +2,32 @@ import { Logging } from "../../../domain/Logging";
 import { AppError } from "../../errors/Errors";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
 import { Event } from "../../../domain/entity/Events";
-import { IEventsRepository } from "../../../domain/repository/events";
-
-export interface CreateEvent {
-  invoke(event: Event): Promise<Event>;
-}
+import { EventsRepository } from "../../../domain/repository/EventsRepository";
+import { CreateEvent } from "../../../domain/usecases/CreateEventUseCase";
 
 export class CreateEventUseCase implements CreateEvent {
   constructor(
-    readonly eventsRepository: IEventsRepository,
+    readonly eventsRepository: EventsRepository,
     readonly logging: Logging,
   ) {}
-  async invoke(data: Event): Promise<Event> {
+
+  public async invoke(data: Event): Promise<Event> {
     try {
-      this.logging.info("New event was created sucessfully");
-      return await this.eventsRepository.create(data);
+      this.logging.info(
+        `[CreateEventUseCase] New event was created sucessfully with name ${data.name}`,
+      );
+
+      const event = await this.eventsRepository.create(data);
+
+      return {
+        description: event.description,
+        location: event.location,
+        name: event.name,
+        userID: event.userID,
+      };
     } catch (error) {
       this.logging.error(
-        `Some error has been ocurred trying create a new event ${error}`,
+        `[CreateEventUseCase] Some error has been ocurred trying create a new event ${error}`,
       );
       throw new AppError(
         "Internal server error",
