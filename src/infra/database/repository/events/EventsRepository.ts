@@ -1,5 +1,5 @@
 import { prisma } from "../../orm/Client";
-import { IEventsRepository } from "../../../../domain/repository/events";
+import { IEventsRepository } from "../../../../domain/repository/EventsRepository";
 import { Events, Prisma } from "@prisma/client";
 
 export class EventsRepositoryImpl implements IEventsRepository {

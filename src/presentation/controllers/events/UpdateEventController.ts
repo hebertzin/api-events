@@ -1,8 +1,8 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
-import { UpdateEvent } from "../../../application/usecases/events/UpdateEvent";
 import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Event } from "../../../domain/entity/Events";
+import { UpdateEvent } from "../../../domain/usecases/UpdateEvent";
 
 export class UpdateEventController implements Controller<Request> {
   constructor(readonly updateEvent: UpdateEvent) {}

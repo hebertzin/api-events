@@ -1,8 +1,8 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
-import { CreateEvent } from "../../../application/usecases/events/CreateEventUseCase";
 import { Controller, HttpResponse } from "../../../domain/Controller";
 import { Event } from "../../../domain/entity/Events";
+import { CreateEvent } from "../../../domain/usecases/CreateEventUseCase";
 
 export class CreateEventController implements Controller<Request> {
   constructor(readonly createEvent: CreateEvent) {}

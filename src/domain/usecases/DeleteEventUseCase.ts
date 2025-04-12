@@ -1,4 +1,3 @@
-
 export interface DeleteEvent {
-    invoke(activity_id: string): Promise<void>;
+  invoke(activity_id: string): Promise<void>;
 }

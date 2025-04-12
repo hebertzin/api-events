@@ -1,10 +1,10 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-import { DeleteActivity } from "../../../application/usecases/events/DeleteEventUseCase";
+import { DeleteEvent } from "../../../domain/usecases/DeleteEventUseCase";
 
 export class DeleteEventController implements Controller<Request> {
-  constructor(readonly deleteEvent: DeleteActivity) {}
+  constructor(readonly deleteEvent: DeleteEvent) {}
   async handle(req: Request): Promise<HttpResponse> {
     const { id } = req.params;
     try {

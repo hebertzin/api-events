@@ -1,5 +1,5 @@
 import { prisma } from "../../orm/Client";
-import { UserRepository } from "../../../../domain/repository/users-repository";
+import { UserRepository } from "../../../../domain/repository/UsersRepository";
 import { User } from "../../../../domain/entity/Users";
 
 export class UsersRepositoryImpl implements UserRepository {

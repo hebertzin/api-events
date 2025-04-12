@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-import { GetEvent } from "../../../application/usecases/events/GetEventUseCase";
+import { GetEvent } from "../../../domain/usecases/GetEventUseCase";
 
 export class GetEventController implements Controller<Request> {
   constructor(readonly getEvent: GetEvent) {}

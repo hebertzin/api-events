@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { HttpStatusCode } from "../../../domain/HttpStatus";
 import { Controller, HttpResponse } from "../../../domain/Controller";
-import { ListEvents } from "../../../application/usecases/events/ListEventsUseCase";
+import { ListEvents } from "../../../domain/usecases/ListEventsUseCase";
 
 export class ListEventsController implements Controller<Request> {
   constructor(readonly listEvents: ListEvents) {}
