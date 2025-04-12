@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { adaptRoute } from "../../adapters/RouterAdapter";
-import { makeAddUserController } from "../../infra/factory/controllers/user/CreateUserFactory";
 import { usersValidatorMiddleware } from "../validators/UsersValidator";
+import { makeAddUserController } from "../../infra/factory/controllers/sd/CreateUserFactory";
 
 export const userManagementRoutes = Router();
 

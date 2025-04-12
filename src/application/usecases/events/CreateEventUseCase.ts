@@ -9,7 +9,7 @@ export class CreateEventUseCase implements CreateEvent {
   constructor(
     readonly eventsRepository: EventsRepository,
     readonly logging: Logging,
-  ) { }
+  ) {}
 
   public async invoke(data: Event): Promise<Event> {
     try {
