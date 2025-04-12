@@ -2,8 +2,8 @@ import { logging } from "../../../logging/Logging";
 import { EventsRepositoryImpl } from "../../../database/repository/events/EventsRepository";
 import {
   CreateEventUseCase,
-  CreateEvent,
 } from "../../../../application/usecases/events/CreateEventUseCase";
+import { CreateEvent } from "../../../../domain/usecases/CreateEventUseCase";
 
 export const makeCreateEvent = (): CreateEvent => {
   const activiyRepository = new EventsRepositoryImpl();

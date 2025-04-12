@@ -17,7 +17,7 @@ eventsManagementRoutes.post(
 eventsManagementRoutes.put(
   "/:id",
   eventsValidatorMiddleware.validate(),
-  adaptRoute(makeUpdateEventController())
+  adaptRoute(makeUpdateEventController()),
 );
 
 eventsManagementRoutes.get("/:user_id", adaptRoute(makeListEventsController()));

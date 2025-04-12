@@ -1,7 +1,7 @@
 import {
-  ListEvents,
   ListEventsUseCase,
 } from "../../../../application/usecases/events/ListEventsUseCase";
+import { ListEvents } from "../../../../domain/usecases/ListEventsUseCase";
 import { EventsRepositoryImpl } from "../../../database/repository/events/EventsRepository";
 import { logging } from "../../../logging/Logging";
 
