@@ -12,7 +12,7 @@ export class AuthenticationUseCase implements Login {
     readonly jwtService: Jwt,
     readonly bcrypt: Hash,
     readonly logging: Logging,
-  ) { }
+  ) {}
 
   public async invoke(user: Authentication): Promise<Token> {
     const existentUser = await this.usersRepository.findByEmail(user.email);
@@ -22,10 +22,10 @@ export class AuthenticationUseCase implements Login {
         HttpStatusCode.NotFound,
       );
     }
-    await this.bcryptValidatePassword(user.password, existentUser.password)
+    await this.bcryptValidatePassword(user.password, existentUser.password);
 
     try {
-      const token = await this.signInToken(existentUser)
+      const token = await this.signInToken(existentUser);
       return { token };
     } catch (error) {
       this.logging.error(
@@ -38,9 +38,12 @@ export class AuthenticationUseCase implements Login {
     }
   }
 
-  private async bcryptValidatePassword(password: string, hashPassword: string): Promise<boolean> {
+  private async bcryptValidatePassword(
+    password: string,
+    hashPassword: string,
+  ): Promise<boolean> {
     try {
-      const isValidPassword = await this.bcrypt.compare(password, hashPassword)
+      const isValidPassword = await this.bcrypt.compare(password, hashPassword);
       if (!isValidPassword) {
         this.logging.warn(`User credential are invalid`);
 
@@ -50,23 +53,29 @@ export class AuthenticationUseCase implements Login {
         );
       }
 
-      this.logging.info("User credentials are correct")
+      this.logging.info("User credentials are correct");
 
       return isValidPassword;
     } catch (err) {
-      this.logging.info("Some error has been ocurred validating user credentials")
+      this.logging.info(
+        "Some error has been ocurred validating user credentials",
+      );
 
-      throw new AppError("Internal server error", HttpStatusCode.InternalServerError)
+      throw new AppError(
+        "Internal server error",
+        HttpStatusCode.InternalServerError,
+      );
     }
   }
 
-  private async signInToken(payload: { email: string, name: string }): Promise<string> {
-    this.logging.info(
-      `Sign in token to user : ${payload.email}`,
-    );
+  private async signInToken(payload: {
+    email: string;
+    name: string;
+  }): Promise<string> {
+    this.logging.info(`Sign in token to user : ${payload.email}`);
 
     try {
-      return this.jwtService.sign(payload, { expiresIn: "1d" })
+      return this.jwtService.sign(payload, { expiresIn: "1d" });
     } catch (err) {
       this.logging.error(
         `Some error has been ocurred sign in token to user : ${payload.email}`,

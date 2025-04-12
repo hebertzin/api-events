@@ -25,7 +25,6 @@ export class CreateEventUseCase implements CreateEvent {
         name: event.name,
         userID: event.userID,
       };
-
     } catch (error) {
       this.logging.error(
         `[CreateEventUseCase] Some error has been ocurred trying create a new event ${error}`,
