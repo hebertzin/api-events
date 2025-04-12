@@ -1,8 +1,8 @@
 import { prisma } from "../../orm/Client";
-import { IEventsRepository } from "../../../../domain/repository/EventsRepository";
+import { EventsRepository } from "../../../../domain/repository/EventsRepository";
 import { Events, Prisma } from "@prisma/client";
 
-export class EventsRepositoryImpl implements IEventsRepository {
+export class EventsRepositoryImpl implements EventsRepository {
   async create(data: Prisma.EventsUncheckedCreateInput): Promise<Events> {
     const events = await prisma.events.create({
       data: {
